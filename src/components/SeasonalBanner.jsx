@@ -11,9 +11,9 @@ export default function SeasonalBanner() {
       <div ref={ref} style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 60, alignItems: "center", position: "relative" }}>
         
         <div className={`sr from-left ${vis ? "in" : ""}`}>
-          <span className="eyebrow wh" style={{ marginBottom: 16, display: "block" }}>Summer Collection</span>
-          <h2 style={{ fontFamily: "var(--serif)", fontWeight: 800, fontSize: "clamp(2rem,4vw,3.2rem)", letterSpacing: "-0.03em", color: "var(--white)", lineHeight: 1.05, marginBottom: 20 }}>
-            Fresh Fruit<br /><em style={{ fontStyle: "italic", color: "var(--tiger)" }}>Flavors Are Back</em>
+          <span className="eyebrow sky" style={{ marginBottom: 16, display: "block" }}>Summer Collection</span>
+          <h2 style={{ fontFamily: "var(--serif)", fontWeight: 800, fontSize: "clamp(2.2rem,4vw,3.6rem)", letterSpacing: "-0.03em", color: "var(--white)", lineHeight: 1.1, marginBottom: 24 }}>
+            Pure Seasonal<br /><em style={{ fontStyle: "italic", color: "var(--tiger)" }}>Fruit Delights</em>
           </h2>
           <p style={{ fontFamily: "var(--sans)", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(255,255,255,0.55)", marginBottom: 36 }}>
             Seasonal specials made from fresh summer fruits. Alphonso Mango, Tender Coconut, Kala Jamun — only while they last.

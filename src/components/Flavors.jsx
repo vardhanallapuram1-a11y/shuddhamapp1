@@ -13,15 +13,15 @@ function FlavorModal({ flavor, onClose }) {
   return (
     <div className="modal-bg" onClick={e => e.target === e.currentTarget && onClose()}>
       <div className="modal-box">
-        <div style={{ height: 260, background: flavor.bg, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ height: 280, background: flavor.bg, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
           {flavor.image ? (
-            <img src={flavor.image} alt={flavor.name} style={{ width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "multiply", opacity: 0.8 }} />
+            <img src={flavor.image} alt={flavor.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           ) : (
-            <span style={{ fontSize: "7rem" }}>{flavor.emoji}</span>
+            <span style={{ fontSize: "7.5rem" }}>{flavor.emoji}</span>
           )}
-          <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, width: 36, height: 36, borderRadius: "50%", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)", cursor: "pointer", fontSize: "1rem", color: "rgba(255,255,255,0.9)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10 }} aria-label="Close">✕</button>
-          <div style={{ position: "absolute", bottom: 16, left: 20, display: "flex", gap: 6, zIndex: 10 }}>
-            {flavor.tags.map(t => <span key={t} className="tag tag-dark">{t}</span>)}
+          <button onClick={onClose} style={{ position: "absolute", top: 20, right: 20, width: 40, height: 40, borderRadius: "50%", background: "rgba(255,255,255,0.2)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.3)", cursor: "pointer", fontSize: "1.1rem", color: "var(--white)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, transition: "all var(--fast)" }} aria-label="Close">✕</button>
+          <div style={{ position: "absolute", bottom: 20, left: 24, display: "flex", gap: 8, zIndex: 10 }}>
+            {flavor.tags.map(t => <span key={t} className="tag tag-dark" style={{ background: "rgba(0,0,0,0.3)", backdropFilter: "blur(8px)" }}>{t}</span>)}
           </div>
         </div>
         <div style={{ padding: "28px 32px 36px" }}>
@@ -94,11 +94,11 @@ export default function FlavorSystem() {
               aria-label={`View ${f.name} details`}
               style={{ transitionDelay: `${i * 40}ms` }}
             >
-              <div className="img-zone" style={{ background: f.bg }}>
+              <div className="img-zone" style={{ background: f.bg, height: 260 }}>
                 {f.image ? (
-                  <img src={f.image} alt={f.name} style={{ width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "multiply", opacity: 0.9 }} />
+                  <img src={f.image} alt={f.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 ) : (
-                  <span className="emoji-giant" style={{ fontSize: "6rem", transition: "transform var(--mid) var(--ease-back)" }}>{f.emoji}</span>
+                  <span className="emoji-giant" style={{ fontSize: "6.5rem", transition: "transform var(--mid) var(--ease-back)" }}>{f.emoji}</span>
                 )}
                 <div className="badge">
                   {f.tags.map(t => <span key={t} className={`tag ${t === "Bestseller" ? "tag-tiger" : t === "New" ? "tag-ocean" : "tag-dark"}`}>{t}</span>)}

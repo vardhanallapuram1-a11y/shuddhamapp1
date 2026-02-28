@@ -1,39 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --ink: #05101a;
-  --ocean: #0a58a3;
-  --sky: #96c1e2;
-  --linen: #f2e2cf;
-  --almond: #e7d3be;
-  --almond-dk: #c9b89e;
-  --tiger: #e87913;
-  --tiger-dk: #c8681a;
-  --white: #ffffff;
-  --muted: #5c4d3c;
-  --dim: #362b21;
-  --border: #dcc9b2;
-  --ocean-lt: #d4e8f7;
-  --sky-lt: #e8f5ff;
-  --linen-dk: #e8ceae;
-  --tiger-lt: #fde9ce;
+  /* Brand Palette from Logo */
+  --ocean: #0060b9;
+  /* Main Blue */
+  --ocean-dk: #004d95;
+  --ocean-lt: #dcefff;
 
+  --sky: #39a9ff;
+  /* Light Blue accents */
+  --sky-lt: #eff8ff;
+
+  --tiger: #f28b03;
+  /* Main Saffron/Orange */
+  --tiger-dk: #d47a02;
+  --tiger-lt: #fff4e5;
+
+  /* Neutrals: Clean Vanilla Cream */
+  --ink: #0a1628;
+  /* Deep Navy for text */
+  --white: #ffffff;
+  --linen: #fdfaf5;
+  /* Pure Vanilla Cream */
+  --linen-dk: #f5ece0;
+  --border: #e8dfd5;
+  --muted: #64748b;
+
+  /* Typography */
   --serif: "Fraunces", Georgia, serif;
   --sans: "Outfit", system-ui, sans-serif;
 
+  /* Transitions & Easing */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --fast: 160ms;
-  --mid: 320ms;
-  --slow: 560ms;
-  --xslow: 900ms;
+  --fast: 150ms;
+  --mid: 300ms;
+  --slow: 600ms;
 
-  --r-sm: 4px;
-  --r-md: 10px;
-  --r-lg: 18px;
-  --r-xl: 28px;
+  /* Radius & Shadows */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 32px;
   --r-pill: 9999px;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 77, 149, 0.08);
+  /* Brand-tinted shadow */
+  --shadow-lg: 0 16px 48px rgba(0, 77, 149, 0.12);
+
+  /* Glassmorphism */
+  --glass: rgba(255, 255, 255, 0.75);
+  --glass-blur: 20px;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 *,
@@ -81,6 +100,7 @@ body {
     background var(--fast);
   will-change: transform;
 }
+
 .cur.big {
   width: 44px;
   height: 44px;
@@ -493,14 +513,14 @@ body {
 }
 
 .bento-card {
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
   transition: all 0.4s var(--ease-out);
 }
 
 .bento-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
 
 .promise-card {
@@ -549,19 +569,22 @@ body {
 }
 
 .shimmer-effect {
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%);
   background-size: 200% 200%;
   animation: shimmer 8s infinite linear;
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .bento-image {
@@ -796,6 +819,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

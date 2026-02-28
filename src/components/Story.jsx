@@ -20,10 +20,10 @@ export default function Story() {
         {/* Header Section */}
         <div className={`sr ${v1 ? "in" : ""}`} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 60, flexWrap: "wrap", gap: 30 }}>
           <div style={{ maxWidth: 600 }}>
-            <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>Est. 2015 — Ratlam</span>
-            <h2 style={{ fontFamily: "var(--serif)", fontWeight: 900, fontSize: "clamp(3rem, 8vw, 5.5rem)", lineHeight: 0.9, color: "var(--ink)", letterSpacing: "-0.04em" }}>
+            <span className="eyebrow" style={{ display: "block", marginBottom: 16, color: "var(--ocean)" }}>Since 2015 — Ratlam</span>
+            <h2 style={{ fontFamily: "var(--serif)", fontWeight: 900, fontSize: "clamp(3.2rem, 8vw, 5.8rem)", lineHeight: 0.9, color: "var(--ink)", letterSpacing: "-0.04em" }}>
               The Shuddham <br />
-              <span style={{ color: "var(--ocean)", fontStyle: "italic", marginLeft: "0.2em" }}>Legacy</span>
+              <span style={{ color: "var(--tiger)", fontStyle: "italic", marginLeft: "0.1em" }}>Promise</span>
             </h2>
           </div>
           <p style={{ maxWidth: 380, fontFamily: "var(--sans)", color: "var(--muted)", fontSize: "1.1rem", lineHeight: 1.6, marginBottom: 10 }}>

@@ -18,9 +18,9 @@ export default function Header({ active }) {
     <header style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 900,
       padding: scrolled ? "14px 0" : "28px 0",
-      background: scrolled ? "rgba(242,226,207,0.95)" : "transparent",
-      backdropFilter: scrolled ? "blur(24px)" : "none",
-      borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+      background: scrolled ? "var(--glass)" : "transparent",
+      backdropFilter: scrolled ? `blur(var(--glass-blur))` : "none",
+      borderBottom: scrolled ? "var(--glass-border)" : "1px solid transparent",
       transition: "all var(--mid) var(--ease-out)",
     }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -28,12 +28,13 @@ export default function Header({ active }) {
         <a href="#hero" className={"nav-logo-wrap nav-logo-visible"} style={{ gap: "14px" }}>
           <div style={{
             width: 56, height: 56, borderRadius: "50%",
-            background: scrolled ? "var(--ocean)" : "var(--tiger)",
+            background: scrolled ? "var(--white)" : "var(--tiger)",
             display: "flex", alignItems: "center", justifyContent: "center",
             flexShrink: 0, overflow: "hidden",
-            transition: "background var(--mid) var(--ease-out), transform var(--fast)",
+            boxShadow: scrolled ? "var(--shadow-md)" : "none",
+            transition: "all var(--mid) var(--ease-out)",
           }}>
-            <img src={logoImg} alt="Shuddham Logo" style={{ width: "100%", height: "100%", objectFit: "cover", background: "white" }} />
+            <img src={logoImg} alt="Shuddham Logo" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
             <div style={{ 
@@ -69,7 +70,7 @@ export default function Header({ active }) {
           ))}
         </nav>
 
-        <a href="#flavors" className="btn btn-tiger hide-sm" style={{ padding: "12px 28px", fontSize: "0.8rem", opacity: scrolled ? 1 : 0.9, transition: "opacity var(--mid)" }}>
+        <a href="#flavors" className="btn btn-tiger hide-sm" style={{ padding: "12px 28px", fontSize: "0.8rem", boxShadow: scrolled ? "var(--shadow-md)" : "none" }}>
           Explore →
         </a>
 

@@ -16,7 +16,7 @@ export default function Contact() {
         <div style={{ marginBottom: 60 }}>
           <span className="eyebrow">Get in Touch</span>
           <h2 style={{ fontFamily: "var(--serif)", fontWeight: 800, fontSize: "clamp(2rem,4vw,3.4rem)", letterSpacing: "-0.03em", marginTop: 12, color: "var(--ink)", lineHeight: 1.05 }}>
-            Partner with<br /><em style={{ fontStyle: "italic", color: "var(--tiger)" }}>Shuddham</em>
+            Partner with <br /><em style={{ fontStyle: "italic", color: "var(--ocean)" }}>Shuddham</em>
           </h2>
           <div className="rule" style={{ marginTop: 20 }} />
         </div>

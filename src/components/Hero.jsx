@@ -1,30 +1,31 @@
 export default function Hero() {
   return (
-    <section id="hero" style={{ minHeight: "100vh", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "var(--ink)" }}>
+    <section id="hero" style={{ minHeight: "100vh", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "var(--ocean)" }}>
 
-      <div style={{ position: "absolute", top: "-10%", right: "-5%", width: "50vmax", height: "50vmax", borderRadius: "50%", background: "radial-gradient(circle, rgba(10,88,163,0.25) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
-      <div style={{ position: "absolute", bottom: "-20%", left: "-10%", width: "60vmax", height: "60vmax", borderRadius: "50%", background: "radial-gradient(circle, rgba(232,121,19,0.15) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+      {/* Dynamic Background Blurs */}
+      <div style={{ position: "absolute", top: "-10%", right: "-5%", width: "60vmax", height: "60vmax", borderRadius: "50%", background: "radial-gradient(circle, rgba(242,139,3,0.3) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+      <div style={{ position: "absolute", bottom: "-20%", left: "-10%", width: "70vmax", height: "70vmax", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
 
-      <div style={{ position: "relative", zIndex: 2, maxWidth: 1000, margin: "0 auto", padding: "120px 32px", width: "100%", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ position: "relative", zIndex: 2, maxWidth: 1000, margin: "0 auto", padding: "140px 32px 100px", width: "100%", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
       
         <h1 className="h2" style={{
           fontFamily: "var(--serif)", fontWeight: 900,
-          fontSize: "clamp(3.5rem, 9vw, 8rem)",
-          lineHeight: 1.05, letterSpacing: "-0.02em",
-          color: "var(--white)", marginBottom: "1.5rem",
-          textShadow: "0 20px 40px rgba(0,0,0,0.4)"
+          fontSize: "clamp(3.8rem, 10vw, 8.5rem)",
+          lineHeight: 1, letterSpacing: "-0.03em",
+          color: "var(--white)", marginBottom: "1.8rem",
+          textShadow: "0 20px 60px rgba(0,0,0,0.3)"
         }}>
           Every Scoop,<br />
           <em style={{ fontStyle: "italic", color: "var(--tiger)" }}>Pure Joy.</em>
         </h1>
 
-        <p className="h3" style={{ fontFamily: "var(--sans)", fontWeight: 300, fontSize: "1.25rem", lineHeight: 1.6, color: "rgba(255,255,255,0.75)", maxWidth: 600, marginBottom: "3.5rem" }}>
-          Ice cream crafted from pure milk, real fruits, and zero compromises. The taste nature intended.
+        <p className="h3" style={{ fontFamily: "var(--sans)", fontWeight: 400, fontSize: "1.3rem", lineHeight: 1.6, color: "rgba(255,255,255,0.85)", maxWidth: 650, marginBottom: "4rem", letterSpacing: "0.01em" }}>
+          Handcrafted ice cream made from farm-fresh milk, real fruits, and zero shortcuts. Experience the Shuddham promise.
         </p>
 
-        <div className="h4" style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap", justifyContent: "center" }}>
-          <a href="#flavors" className="btn btn-tiger" style={{ padding: "18px 44px", fontSize: "0.95rem" }}>Explore Flavors →</a>
-          <a href="#story" className="btn btn-ghost btn-ghost-light" style={{ padding: "18px 44px", fontSize: "0.95rem" }}>Our Story</a>
+        <div className="h4" style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", justifyContent: "center" }}>
+          <a href="#flavors" className="btn btn-tiger" style={{ padding: "20px 48px", fontSize: "1rem", boxShadow: "0 20px 40px rgba(242,139,3,0.3)" }}>Explore Flavors</a>
+          <a href="#story" className="btn btn-ghost btn-ghost-light" style={{ padding: "20px 48px", fontSize: "1rem" }}>Our Pure Story</a>
         </div>
       </div>
 
