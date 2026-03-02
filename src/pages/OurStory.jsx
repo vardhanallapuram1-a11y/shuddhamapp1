@@ -115,7 +115,7 @@ export default function OurStory() {
                             border: "1px solid var(--border)",
                             boxShadow: "0 10px 30px rgba(60,47,47,0.05)"
                         }}>
-                            <h4 style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", color: "var(--warm-accent)", marginBottom: 16 }}>{v.t}</h4>
+                            <h4 style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", color: "var(--ice-peach)", marginBottom: 16 }}>{v.t}</h4>
                             <p style={{ fontFamily: "var(--sans)", color: "var(--muted)", lineHeight: 1.7 }}>{v.b}</p>
                         </div>
                     ))}
