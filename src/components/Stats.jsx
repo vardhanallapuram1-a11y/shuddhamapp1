@@ -13,12 +13,12 @@ function StatNum({ target, suffix }) {
 
 export default function Stats() {
   return (
-    <section style={{ background: "var(--ocean)", padding: "0" }}>
-      <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}>
+    <section style={{ background: "var(--warm-dark)", padding: "40px 0" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 32 }}>
         {STATS.map((s) => (
-          <div key={s.label} className="stat-block">
+          <div key={s.label} className="stat-block" style={{ textAlign: "center", padding: "20px" }}>
             <StatNum target={s.val} suffix={s.suf} />
-            <div style={{ fontFamily: "var(--sans)", fontWeight: 600, fontSize: "0.75rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginTop: 10 }}>{s.label}</div>
+            <div style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginTop: 12 }}>{s.label}</div>
           </div>
         ))}
       </div>

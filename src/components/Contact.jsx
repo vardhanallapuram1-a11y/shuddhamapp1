@@ -11,42 +11,135 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" style={{ padding: "120px 32px", background: "var(--white)" }}>
-      <div ref={ref} style={{ maxWidth: 1240, margin: "0 auto" }}>
-        <div style={{ marginBottom: 60 }}>
-          <span className="eyebrow">Get in Touch</span>
-          <h2 style={{ fontFamily: "var(--serif)", fontWeight: 800, fontSize: "clamp(2rem,4vw,3.4rem)", letterSpacing: "-0.03em", marginTop: 12, color: "var(--ink)", lineHeight: 1.05 }}>
-            Partner with <br /><em style={{ fontStyle: "italic", color: "var(--ocean)" }}>Shuddham</em>
+    <section id="contact" style={{ padding: "clamp(60px, 10vw, 120px) 24px", background: "var(--warm-bg)" }}>
+      <div ref={ref} style={{ maxWidth: 1400, margin: "0 auto" }}>
+        <div style={{ marginBottom: 64 }} className={`reveal ${vis ? 'reveal-active' : ''}`}>
+          <span style={{
+            fontFamily: "var(--sans)",
+            fontSize: "0.8rem",
+            fontWeight: 700,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "var(--warm-accent)",
+            display: "block",
+            marginBottom: 16
+          }}>Get in Touch</span>
+          <h2 className="reveal-delay-1" style={{
+            fontFamily: "var(--serif)",
+            fontWeight: 800,
+            fontSize: "clamp(2.5rem, 5vw, 4rem)",
+            letterSpacing: "-0.02em",
+            color: "var(--warm-dark)",
+            lineHeight: 1.1
+          }}>
+            Partner with <br /><span style={{ fontStyle: "italic", fontWeight: 400, color: "var(--warm-accent)" }}>Shuddham</span>
           </h2>
-          <div className="rule" style={{ marginTop: 20 }} />
         </div>
 
-        <div className={`sr ${vis ? "in" : ""}`} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 56, alignItems: "start" }}>
+        <div className={`reveal reveal-delay-2 ${vis ? "reveal-active" : ""}`} style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: "clamp(40px, 8vw, 100px)",
+          alignItems: "start"
+        }}>
           <div>
-            <p style={{ fontFamily: "var(--sans)", fontWeight: 400, fontSize: "0.95rem", lineHeight: 1.85, color: "var(--muted)", marginBottom: 44 }}>
+            <p style={{
+              fontFamily: "var(--sans)",
+              fontSize: "1rem",
+              lineHeight: 1.7,
+              color: "var(--muted)",
+              marginBottom: 48,
+              maxWidth: 480
+            }}>
               Looking to stock Shuddham products or partner with us? Reach out to Anil Sisodia directly. We'd love to bring pure, natural dairy to more families.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-              {contacts.map(c => (
-                <div key={c.label} style={{ display: "flex", gap: 18, alignItems: "flex-start" }}>
-                  <div style={{ width: 48, height: 48, background: "var(--ocean-lt)", color: "var(--ocean)", borderRadius: "var(--r-md)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{c.icon}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+              {contacts.map((c, i) => (
+                <div key={c.label} className={`reveal reveal-delay-${i + 2} ${vis ? 'reveal-active' : ''}`} style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
+                  <div style={{
+                    width: 52,
+                    height: 52,
+                    background: "var(--warm-cream)",
+                    color: "var(--warm-accent)",
+                    borderRadius: "var(--r-md)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    boxShadow: "0 8px 24px rgba(60,47,47,0.06)"
+                  }}>{c.icon}</div>
                   <div>
-                    <div style={{ fontFamily: "var(--sans)", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: 6 }}>{c.label}</div>
-                    <div style={{ fontFamily: "var(--sans)", fontWeight: 600, fontSize: "0.95rem", color: "var(--ink)", whiteSpace: "pre-line", lineHeight: 1.6 }}>{c.val}</div>
+                    <div style={{
+                      fontFamily: "var(--sans)",
+                      fontSize: "0.7rem",
+                      fontWeight: 800,
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      color: "var(--muted)",
+                      marginBottom: 6
+                    }}>{c.label}</div>
+                    <div style={{
+                      fontFamily: "var(--sans)",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                      color: "var(--warm-dark)",
+                      whiteSpace: "pre-line",
+                      lineHeight: 1.5
+                    }}>{c.val}</div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div style={{ background: "var(--linen)", border: "2px solid var(--border)", borderRadius: "var(--r-xl)", padding: 40 }}>
-            <h3 style={{ fontFamily: "var(--serif)", fontWeight: 700, fontSize: "1.4rem", color: "var(--ink)", marginBottom: 24, letterSpacing: "-0.01em" }}>Send a Message</h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className={`reveal reveal-delay-3 ${vis ? 'reveal-active' : ''}`} style={{
+            background: "var(--white)",
+            borderRadius: "var(--r-xl)",
+            padding: "clamp(32px, 5vw, 48px)",
+            boxShadow: "0 40px 80px rgba(60,47,47,0.08)",
+            border: "1px solid var(--border)"
+          }}>
+            <h3 style={{
+              fontFamily: "var(--serif)",
+              fontWeight: 800,
+              fontSize: "1.5rem",
+              color: "var(--warm-dark)",
+              marginBottom: 32,
+              letterSpacing: "-0.01em"
+            }}>Send a Message</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {["Your Name", "Phone Number", "City / Location"].map(p => (
-                <input key={p} className="fi" placeholder={p} />
+                <input key={p} className="fi" placeholder={p} style={{
+                  fontFamily: "var(--sans)",
+                  padding: "16px 20px",
+                  borderRadius: "12px",
+                  border: "1px solid var(--border)",
+                  background: "var(--warm-bg)",
+                  fontSize: "0.95rem"
+                }} />
               ))}
-              <textarea className="fi" placeholder="Tell us about your requirement..." rows={4} style={{ resize: "vertical" }} />
-              <button className="btn btn-tiger" style={{ width: "100%", justifyContent: "center", marginTop: 8 }}>Send Inquiry →</button>
+              <textarea className="fi" placeholder="Tell us about your requirement..." rows={4} style={{
+                fontFamily: "var(--sans)",
+                padding: "16px 20px",
+                borderRadius: "12px",
+                border: "1px solid var(--border)",
+                background: "var(--warm-bg)",
+                resize: "vertical",
+                fontSize: "0.95rem"
+              }} />
+              <button className="btn" style={{
+                width: "100%",
+                justifyContent: "center",
+                marginTop: 12,
+                background: "var(--warm-dark)",
+                color: "var(--white)",
+                padding: "16px",
+                borderRadius: "99px",
+                fontSize: "1rem",
+                fontWeight: 700,
+                border: "none",
+                cursor: "pointer"
+              }}>Send Inquiry →</button>
             </div>
           </div>
         </div>

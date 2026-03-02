@@ -1,129 +1,158 @@
-import { useState, useRef, useEffect } from "react";
-import { useReveal, useDragScroll } from "../hooks";
-import { FLAVORS, CATS } from "../data/content";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { useDragScroll } from "../hooks";
+import splitImg from "../assets/images/split_editorial.png";
+import { FLAVORS } from "../data/content";
 
-function FlavorModal({ flavor, onClose }) {
-  useEffect(() => {
-    const fn = e => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", fn);
-    document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", fn); document.body.style.overflow = ""; };
-  }, [onClose]);
-
-  return (
-    <div className="modal-bg" onClick={e => e.target === e.currentTarget && onClose()}>
-      <div className="modal-box">
-        <div style={{ height: 280, background: flavor.bg, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
-          {flavor.image ? (
-            <img src={flavor.image} alt={flavor.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-          ) : (
-            <span style={{ fontSize: "7.5rem" }}>{flavor.emoji}</span>
-          )}
-          <button onClick={onClose} style={{ position: "absolute", top: 20, right: 20, width: 40, height: 40, borderRadius: "50%", background: "rgba(255,255,255,0.2)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.3)", cursor: "pointer", fontSize: "1.1rem", color: "var(--white)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, transition: "all var(--fast)" }} aria-label="Close">✕</button>
-          <div style={{ position: "absolute", bottom: 20, left: 24, display: "flex", gap: 8, zIndex: 10 }}>
-            {flavor.tags.map(t => <span key={t} className="tag tag-dark" style={{ background: "rgba(0,0,0,0.3)", backdropFilter: "blur(8px)" }}>{t}</span>)}
-          </div>
-        </div>
-        <div style={{ padding: "28px 32px 36px" }}>
-          <h2 style={{ fontFamily: "var(--serif)", fontWeight: 800, fontSize: "2rem", color: "var(--ink)", marginBottom: 12, letterSpacing: "-0.02em" }}>{flavor.name}</h2>
-          <p style={{ fontFamily: "var(--sans)", fontWeight: 400, fontSize: "0.95rem", lineHeight: 1.85, color: "var(--muted)", marginBottom: 24 }}>{flavor.desc}</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 24 }}>
-            {[["Category", flavor.cat], ["Season", flavor.season]].map(([l, v]) => (
-              <div key={l} style={{ background: "var(--linen)", borderRadius: "var(--r-md)", padding: "14px 16px" }}>
-                <div style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: 4 }}>{l}</div>
-                <div style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: "0.9rem", color: "var(--ink)" }}>{v}</div>
-              </div>
-            ))}
-          </div>
-          {flavor.pairings?.length > 0 && (
-            <div style={{ marginBottom: 28 }}>
-              <div style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: 10 }}>Pairs With</div>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {flavor.pairings.map(p => (
-                  <span key={p} style={{ background: "var(--linen)", border: "1.5px solid var(--border)", color: "var(--ink)", fontFamily: "var(--sans)", fontSize: "0.85rem", fontWeight: 600, padding: "5px 14px", borderRadius: "var(--r-pill)" }}>{p}</span>
-                ))}
-              </div>
-            </div>
-          )}
-          <button className="btn btn-ink" onClick={onClose} style={{ width: "100%", justifyContent: "center" }}>Back to Flavors</button>
-        </div>
-      </div>
-    </div>
-  );
-}
+// Use all flavors from the catalog
+const SIGNATURE_PRODUCTS = FLAVORS;
 
 export default function FlavorSystem() {
-  const [cat, setCat] = useState("All");
-  const [modal, setModal] = useState(null);
-  const [ref, vis] = useReveal();
   const railRef = useRef(null);
   const drag = useDragScroll(railRef);
-  const filtered = FLAVORS.filter(f => cat === "All" || f.cat === cat);
 
   return (
-    <section id="flavors" style={{ padding: "120px 0 0", background: "var(--linen)", overflow: "hidden" }}>
-      <div ref={ref} style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
-        <div className={`sr ${vis ? "in" : ""}`} style={{ marginBottom: 12 }}>
-          <span className="eyebrow">Handcrafted Collection</span>
-        </div>
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 20, marginBottom: 16 }}>
-          <h2 className={`sr ${vis ? "in" : ""}`} style={{ transitionDelay: "80ms", fontFamily: "var(--serif)", fontWeight: 800, fontSize: "clamp(2.2rem,5vw,4rem)", letterSpacing: "-0.03em", color: "var(--ink)", lineHeight: 1 }}>
-            Discover Every<br /><em style={{ fontStyle: "italic", color: "var(--tiger)" }}>Flavor</em>
-          </h2>
-          <div className={`sr ${vis ? "in" : ""}`} style={{ transitionDelay: "160ms", display: "flex", gap: 8, flexWrap: "wrap" }}>
-            {CATS.map(c => (
-              <button key={c} className={`cpill ${cat === c ? "on" : ""}`} onClick={() => setCat(c)}>{c}</button>
-            ))}
+    <div id="flavors" style={{ background: "var(--warm-bg)" }}>
+      {/* Editorial Split Section */}
+      <section style={{
+        padding: "clamp(60px, 10vw, 120px) 24px", // Responsive padding
+        maxWidth: 1400,
+        margin: "0 auto",
+      }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", // Responsive grid
+          alignItems: "center",
+          gap: "clamp(40px, 8vw, 100px)"
+        }}>
+          <div style={{ textAlign: "left" }}>
+            <span style={{
+              fontFamily: "var(--sans)",
+              fontSize: "0.8rem",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "var(--warm-accent)", // Updated color for elegance
+              display: "block",
+              marginBottom: 16
+            }}>About Our Craft</span>
+
+            <h2 style={{
+              fontFamily: "var(--serif)",
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              fontWeight: 800,
+              lineHeight: 1.1,
+              color: "var(--warm-dark)",
+              marginBottom: 24,
+              letterSpacing: "-0.02em"
+            }}>
+              Sweet Moments <br /> Start with <br /> <span style={{ fontStyle: "italic", fontWeight: 400 }}>Purity</span>
+            </h2>
+
+            <p style={{
+              fontFamily: "var(--sans)",
+              fontSize: "1rem",
+              lineHeight: 1.7,
+              color: "var(--muted)",
+              maxWidth: 480,
+              marginBottom: 40
+            }}>
+              Every scoop is a celebration of fine ingredients and artisanal patience. We source the freshest dairy and real fruits to ensure your moments are nothing short of magical.
+            </p>
+
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+              <Link to="/our-story" className="btn" style={{
+                border: "1px solid var(--warm-dark)",
+                padding: "14px 40px",
+                borderRadius: "99px",
+                color: "var(--warm-dark)",
+                textDecoration: "none",
+                fontSize: "0.85rem",
+                fontWeight: 700
+              }}>
+                Our Story
+              </Link>
+              <Link to="/flavors" className="btn" style={{
+                background: "var(--warm-dark)",
+                color: "var(--white)",
+                padding: "14px 40px",
+                borderRadius: "99px",
+                textDecoration: "none",
+                fontSize: "0.85rem",
+                fontWeight: 700
+              }}>
+                View All Flavors
+              </Link>
+            </div>
+          </div>
+
+          <div style={{
+            borderRadius: "var(--r-xl)", // Now responsive via CSS
+            overflow: "hidden",
+            boxShadow: "0 40px 80px rgba(60,47,47,0.12)"
+          }}>
+            <img src={splitImg} alt="Artisanal Ice Cream Craft" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
         </div>
-        <div className={`sr ${vis ? "in" : ""}`} style={{ transitionDelay: "240ms" }}>
-          <div className="rule" style={{ marginBottom: 48 }} />
-        </div>
-      </div>
+      </section>
 
-      <div style={{ paddingLeft: 32, paddingRight: 32, maxWidth: 1240, margin: "0 auto" }}>
-        <div ref={railRef} className="fl-rail" {...drag}>
-          {filtered.map((f, i) => (
-            <div
-              key={f.id}
-              className="fl-card"
-              onClick={() => setModal(f)}
-              tabIndex={0}
-              role="button"
-              onKeyDown={e => e.key === "Enter" && setModal(f)}
-              aria-label={`View ${f.name} details`}
-              style={{ transitionDelay: `${i * 40}ms` }}
-            >
-              <div className="img-zone" style={{ background: f.bg, height: 260 }}>
-                {f.image ? (
-                  <img src={f.image} alt={f.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                ) : (
-                  <span className="emoji-giant" style={{ fontSize: "6.5rem", transition: "transform var(--mid) var(--ease-back)" }}>{f.emoji}</span>
-                )}
-                <div className="badge">
-                  {f.tags.map(t => <span key={t} className={`tag ${t === "Bestseller" ? "tag-tiger" : t === "New" ? "tag-ocean" : "tag-dark"}`}>{t}</span>)}
-                </div>
-                <div style={{ position: "absolute", bottom: 14, right: 14 }}>
-                  <span style={{ fontFamily: "var(--sans)", fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: f.fg, opacity: 0.55 }}>{f.season}</span>
-                </div>
+      {/* Product Gallery Section with Good Slider */}
+      <section style={{ padding: "clamp(80px, 10vw, 120px) 0", textAlign: "left" }}>
+        <div style={{ maxWidth: 1400, margin: "0 24px 60px", paddingLeft: "clamp(0px, 4vw, 40px)" }}>
+          <h2 style={{
+            fontFamily: "var(--serif)",
+            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontWeight: 800,
+            color: "var(--warm-dark)",
+            letterSpacing: "-0.02em"
+          }}>
+            Signature Collection
+          </h2>
+          <p style={{ fontFamily: "var(--sans)", fontSize: "0.9rem", color: "var(--muted)", marginTop: 12 }}>
+            Drag to explore our full range of pure delights
+            <span style={{ color: "var(--warm-accent)", marginLeft: 8 }}>→</span>
+          </p>
+        </div>
+
+        <div
+          ref={railRef}
+          className="fl-rail"
+          {...drag}
+          style={{
+            display: "flex",
+            gap: "var(--card-gap)",
+            padding: "0 clamp(24px, 5vw, 40px)",
+            width: "100%", // Fix for mobile overflow
+            scrollSnapType: "x mandatory" // Smoother mobile scroll
+          }}
+        >
+          {SIGNATURE_PRODUCTS.map(p => (
+            <div key={p.id} className="p-card" style={{ scrollSnapAlign: "center" }}>
+              <div className="p-img-box" style={{ background: p.bg || "rgba(0,0,0,0.03)" }}>
+                <img src={p.image} alt={p.name} loading="lazy" />
               </div>
-              <div className="body">
-                <h3 style={{ fontFamily: "var(--serif)", fontWeight: 700, fontSize: "1.2rem", color: "var(--ink)", marginBottom: 6, letterSpacing: "-0.01em" }}>{f.name}</h3>
-                <p style={{ fontFamily: "var(--sans)", fontWeight: 400, fontSize: "0.85rem", lineHeight: 1.7, color: "var(--muted)", marginBottom: 16, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{f.desc}</p>
-                <span style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.06em", color: "var(--ocean)", display: "flex", alignItems: "center", gap: 4 }}>
-                  View Details <span style={{ fontSize: "0.9em" }}>→</span>
-                </span>
+              <div style={{ padding: "0 4px" }}>
+                <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.25rem", fontWeight: 800, color: "var(--warm-dark)", marginBottom: 6 }}>{p.name}</h3>
+                <p style={{ fontFamily: "var(--sans)", fontSize: "0.85rem", color: "var(--muted)", marginBottom: 16, height: "3.2em", overflow: "hidden", lineHeight: 1.6 }}>{p.desc}</p>
+                <div style={{
+                  display: "inline-block",
+                  fontFamily: "var(--sans)",
+                  fontSize: "0.65rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "var(--warm-accent)",
+                  background: "var(--warm-cream)",
+                  padding: "6px 14px",
+                  borderRadius: "99px"
+                }}>
+                  {p.cat} Collection
+                </div>
               </div>
             </div>
           ))}
-          {filtered.length === 0 && (
-            <div style={{ fontFamily: "var(--sans)", color: "var(--muted)", padding: "40px 0" }}>No flavors in this category.</div>
-          )}
         </div>
-        <p style={{ fontFamily: "var(--sans)", fontSize: "0.72rem", fontWeight: 500, color: "var(--muted)", letterSpacing: "0.08em", textAlign: "center", marginTop: 4, marginBottom: 48, opacity: 0.7 }}>Drag to explore →</p>
-      </div>
-
-      {modal && <FlavorModal flavor={modal} onClose={() => setModal(null)} />}
-    </section>
+      </section>
+    </div>
   );
 }

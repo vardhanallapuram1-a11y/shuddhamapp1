@@ -1,39 +1,37 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useScrollProgress, useActiveSection } from "./hooks";
-import Cursor from "./components/Cursor";
+import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
-import Stats from "./components/Stats";
-import FlavorSystem from "./components/Flavors";
-import Story from "./components/Story";
-import SeasonalBanner from "./components/SeasonalBanner";
-import Dairy from "./components/Dairy";
-import WhyUs from "./components/WhyUs";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./pages/Home";
+import OurStory from "./pages/OurStory";
+import FlavorsPage from "./pages/FlavorsPage";
+import DairyPage from "./pages/DairyPage";
+import Partnership from "./pages/Partnership";
 import "./index.css";
 
 export default function App() {
   const progress = useScrollProgress();
+  // Active section hook might need adaptation for multi-page, for now we keep it for page progress
   const active = useActiveSection(["hero", "flavors", "story", "dairy", "why", "contact"]);
 
   return (
-    <>
-      <Cursor />
+    <Router>
+      <ScrollToTop />
+      <CustomCursor />
       <div className="pg" style={{ width: `${progress}%` }} aria-hidden="true" />
       <Header active={active} />
       <main>
-        <Hero />
-        <Marquee />
-        <Stats />
-        <FlavorSystem />
-        <Story />
-        <SeasonalBanner />
-        <Dairy />
-        <WhyUs />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/our-story" element={<OurStory />} />
+          <Route path="/flavors" element={<FlavorsPage />} />
+          <Route path="/dairy" element={<DairyPage />} />
+          <Route path="/partnership" element={<Partnership />} />
+        </Routes>
       </main>
       <Footer />
-    </>
+    </Router>
   );
 }

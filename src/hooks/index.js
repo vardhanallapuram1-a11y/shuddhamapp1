@@ -89,3 +89,12 @@ export function useActiveSection(ids) {
   }, [ids]);
   return active;
 }
+export function useParallax(speed = 0.1) {
+  const [offset, setOffset] = useState(0);
+  useEffect(() => {
+    const fn = () => setOffset(window.scrollY * speed);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, [speed]);
+  return offset;
+}

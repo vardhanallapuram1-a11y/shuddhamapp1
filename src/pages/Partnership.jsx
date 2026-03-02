@@ -1,0 +1,82 @@
+import { useReveal } from "../hooks";
+import Contact from "../components/Contact"; // Reuse original form but wrap in page context
+
+export default function Partnership() {
+    const [ref1, vis1] = useReveal();
+
+    return (
+        <div style={{ background: "var(--warm-bg)", minHeight: "100vh", padding: "140px 24px 100px" }}>
+            <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+
+                {/* Page Header */}
+                <div ref={ref1} className={`reveal ${vis1 ? 'reveal-active' : ''}`} style={{ marginBottom: 80, textAlign: "center" }}>
+                    <span style={{
+                        fontFamily: "var(--sans)",
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.2em",
+                        textTransform: "uppercase",
+                        color: "var(--warm-accent)",
+                        display: "block",
+                        marginBottom: 20
+                    }}>Business Partnerships</span>
+                    <h1 style={{
+                        fontFamily: "var(--serif)",
+                        fontSize: "clamp(3rem, 7vw, 5rem)",
+                        fontWeight: 800,
+                        color: "var(--warm-dark)",
+                        lineHeight: 1.1,
+                        marginBottom: 30
+                    }}>
+                        Grow With <span style={{ fontStyle: "italic", fontWeight: 400 }}>Shuddham.</span>
+                    </h1>
+                    <p style={{
+                        fontFamily: "var(--sans)",
+                        fontSize: "1.2rem",
+                        lineHeight: 1.7,
+                        color: "var(--muted)",
+                        maxWidth: 700,
+                        margin: "0 auto"
+                    }}>
+                        We are looking for dedicated partners, distributors, and retailers who share our passion for local, pure, and artisanal dairy.
+                    </p>
+                </div>
+
+                {/* Benefits Section */}
+                <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                    gap: 32,
+                    marginBottom: 100
+                }}>
+                    {[
+                        { t: "Premium Branding", desc: "Access to high-end marketing materials and a brand name associated with world-class purity." },
+                        { t: "Exclusive Territories", desc: "Grow your business with territory protection and direct support from our logistics team." },
+                        { t: "Quality Assurance", desc: "Zero returns on quality — our lab-tested promise ensures your customers stay loyal." }
+                    ].map((b, i) => (
+                        <div key={i} style={{
+                            background: "var(--white)",
+                            padding: 40,
+                            borderRadius: "var(--r-lg)",
+                            border: "1px solid var(--border)",
+                            boxShadow: "0 10px 30px rgba(60,47,47,0.05)"
+                        }}>
+                            <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.4rem", color: "var(--warm-accent)", marginBottom: 16 }}>{b.t}</h3>
+                            <p style={{ fontFamily: "var(--sans)", color: "var(--muted)", fontSize: "0.95rem", lineHeight: 1.7 }}>{b.desc}</p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Formal Contact Form Section (Reused Component) */}
+                <Contact />
+
+                <div style={{ marginTop: 80, textAlign: "center", borderTop: "1px solid var(--border)", paddingTop: 80 }}>
+                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "2rem", color: "var(--warm-dark)", marginBottom: 20 }}>Direct Line</h3>
+                    <p style={{ fontFamily: "var(--sans)", fontSize: "1.2rem", color: "var(--muted)" }}>
+                        Anil Sisodia: <span style={{ fontWeight: 800, color: "var(--warm-accent)" }}>+91 9425103492</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+}

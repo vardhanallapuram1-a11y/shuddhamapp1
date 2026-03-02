@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   const cols = [
-    { title: "Products", links: [{ l: "Ice Creams", h: "#flavors" }, { l: "Dairy Products", h: "#dairy" }, { l: "Seasonal Specials", h: "#flavors" }, { l: "Gift Packs", h: "#contact" }] },
-    { title: "Company", links: [{ l: "Our Story", h: "#story" }, { l: "Why Shuddham", h: "#why" }, { l: "Quality Promise", h: "#why" }, { l: "Contact", h: "#contact" }] },
+    { title: "Products", links: [{ l: "Ice Creams", h: "/flavors" }, { l: "Dairy Products", h: "/dairy" }, { l: "Seasonal Specials", h: "/flavors" }, { l: "Gift Packs", h: "/partnership" }] },
+    { title: "Company", links: [{ l: "Our Story", h: "/our-story" }, { l: "Why Shuddham", h: "/#why" }, { l: "Quality Promise", h: "/#why" }, { l: "Contact", h: "/partnership" }] },
   ];
 
   return (
@@ -31,15 +33,15 @@ export default function Footer() {
             </div>
           </div>
           {cols.map(c => (
-             <div key={c.title}>
-              <h4 style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--tiger-dk)", marginBottom: 24 }}>{c.title}</h4>
+            <div key={c.title}>
+              <h4 style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--warm-accent)", marginBottom: 24 }}>{c.title}</h4>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
-                {c.links.map(l => <li key={l.l}><a href={l.h} className="fl">{l.l}</a></li>)}
+                {c.links.map(l => <li key={l.l}><Link to={l.h} className="fl">{l.l}</Link></li>)}
               </ul>
             </div>
           ))}
           <div>
-            <h4 style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--tiger-dk)", marginBottom: 24 }}>Contact</h4>
+            <h4 style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--warm-accent)", marginBottom: 24 }}>Contact</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div style={{ fontFamily: "var(--sans)", fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8 }}>📞 9425103492<br />7987638522</div>
               <div style={{ fontFamily: "var(--sans)", fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8 }}>📍 Mangrol, Gram Sajjanpada<br />Ratlam (M.P.) — 457001</div>
