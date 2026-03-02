@@ -13,36 +13,36 @@ export default function Contact() {
   return (
     <section id="contact" style={{ padding: "clamp(60px, 10vw, 120px) 24px", background: "var(--warm-bg)" }}>
       <div ref={ref} style={{ maxWidth: 1400, margin: "0 auto" }}>
-        <div style={{ marginBottom: 64 }} className={`reveal ${vis ? 'reveal-active' : ''}`}>
-          <span style={{
-            fontFamily: "var(--sans)",
-            fontSize: "0.8rem",
-            fontWeight: 700,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            color: "var(--warm-accent)",
-            display: "block",
-            marginBottom: 16
-          }}>Get in Touch</span>
-          <h2 className="reveal-delay-1" style={{
-            fontFamily: "var(--serif)",
-            fontWeight: 800,
-            fontSize: "clamp(2.5rem, 5vw, 4rem)",
-            letterSpacing: "-0.02em",
-            color: "var(--warm-dark)",
-            lineHeight: 1.1
-          }}>
-            Partner with <br /><span style={{ fontStyle: "italic", fontWeight: 400, color: "var(--warm-accent)" }}>Shuddham</span>
-          </h2>
-        </div>
-
         <div className={`reveal reveal-delay-2 ${vis ? "reveal-active" : ""}`} style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "clamp(40px, 8vw, 100px)",
-          alignItems: "start"
+          alignItems: "center"
         }}>
           <div>
+            <div style={{ marginBottom: 40 }}>
+              <span style={{
+                fontFamily: "var(--sans)",
+                fontSize: "0.8rem",
+                fontWeight: 700,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "var(--warm-accent)",
+                display: "block",
+                marginBottom: 16
+              }}>Get in Touch</span>
+              <h2 style={{
+                fontFamily: "var(--serif)",
+                fontWeight: 800,
+                fontSize: "clamp(2.5rem, 5vw, 4rem)",
+                letterSpacing: "-0.02em",
+                color: "var(--warm-dark)",
+                lineHeight: 1.1
+              }}>
+                Partner with <br /><span style={{ fontStyle: "italic", fontWeight: 400, color: "var(--warm-accent)" }}>Shuddham</span>
+              </h2>
+            </div>
+
             <p style={{
               fontFamily: "var(--sans)",
               fontSize: "1rem",

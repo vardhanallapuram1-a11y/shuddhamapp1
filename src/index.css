@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Outfit:wght@300;400;500;600;700&family=Dancing+Script:wght@400..700&display=swap");
 
 :root {
-  /* Artisanal Ice Cream Palette */
+  /* Anita Gelato Style Palette */
+  --anita-pink: #E9BCBC;
+  --anita-beige: #F2ECE4;
+  --anita-green: #223D33;
+  --anita-white: #FFFFFF;
+
   --ice-peach: #FFB7B2;
   --ice-peach-light: #FFF0EF;
   --ice-mint: #B2E2F2;
@@ -13,11 +18,11 @@
   --ice-white: #FFFFFF;
   --ice-brown: #3c2f2f;
 
-  --warm-bg: var(--ice-peach-light);
-  --warm-card: var(--ice-white);
-  --warm-dark: var(--ice-brown);
-  --warm-accent: var(--ice-peach);
-  --warm-cream: var(--ice-white);
+  --warm-bg: var(--anita-beige);
+  --warm-card: var(--anita-white);
+  --warm-dark: var(--anita-green);
+  --warm-accent: var(--anita-pink);
+  --warm-cream: var(--anita-beige);
   --fast: 0.2s;
 
   --ocean: var(--ice-mint);
@@ -26,12 +31,12 @@
   --tiger-dk: #2a1f1f;
   --tiger-lt: var(--ice-mint-light);
 
-  --ink: var(--ice-brown);
+  --ink: var(--anita-green);
   --white: #ffffff;
-  --linen: var(--ice-peach-light);
+  --linen: var(--anita-beige);
   /* Warm cream background */
-  --border: rgba(0, 0, 0, 0.05);
-  --muted: #8c7e7e;
+  --border: rgba(34, 61, 51, 0.1);
+  --muted: #5A6B64;
 
   /* Typography */
   --serif: "Fraunces", Georgia, serif;
@@ -47,8 +52,43 @@
   --r-md: 12px;
 
   /* Responsive Variables */
-  --card-w: 380px;
-  --card-gap: 40px;
+  --hero-gradient: linear-gradient(135deg, #ffffff 0%, #fff0f0 100%);
+  --stencil-font: "Fraunces", serif;
+}
+
+.btn-stencil {
+  background: #7d4b4b;
+  /* Dark reddish-brown from image */
+  color: white;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-stencil-outline {
+  background: transparent;
+  color: #7d4b4b;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid #7d4b4b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.arc-item {
+  position: absolute;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.arc-item:hover {
+  transform: scale(1.1) translateY(-10px);
 }
 
 @media (max-width: 768px) {
@@ -145,6 +185,101 @@ body {
   .custom-cursor {
     display: none;
   }
+}
+
+/* Anita Gelato Specific Styles */
+.anita-arched-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+  overflow: hidden;
+  position: relative;
+  background: var(--anita-beige);
+}
+
+.anita-arched-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.anita-card {
+  background: var(--anita-beige);
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s var(--ease-out);
+  padding: 0 0 40px;
+}
+
+.anita-card:hover {
+  transform: translateY(-10px);
+}
+
+.anita-btn {
+  background: var(--anita-green);
+  color: var(--white);
+  padding: 12px 32px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.anita-btn:hover {
+  opacity: 0.9;
+}
+
+.anita-filter-tab {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  padding: 8px 0;
+  margin-right: 40px;
+  cursor: pointer;
+  color: var(--anita-green);
+  position: relative;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.anita-filter-tab.active {
+  opacity: 1;
+}
+
+.anita-filter-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--anita-green);
+  transition: width 0.3s ease;
+}
+
+.anita-filter-tab.active::after {
+  width: 100%;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--anita-green);
 }
 
 .pg {

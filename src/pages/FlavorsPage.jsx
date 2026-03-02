@@ -11,68 +11,70 @@ export default function FlavorsPage() {
         : FLAVORS.filter(f => f.cat === activeCat);
 
     return (
-        <div style={{ background: "var(--warm-bg)", minHeight: "100vh", padding: "140px 24px 100px" }}>
-            <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+        <div style={{ background: "var(--anita-beige)", minHeight: "100vh" }}>
 
-                {/* Header Section */}
-                <div ref={ref1} className={`reveal ${vis1 ? 'reveal-active' : ''}`} style={{ marginBottom: 80, textAlign: "left" }}>
+            {/* Pink Hero Section */}
+            <div style={{
+                background: "var(--anita-pink)",
+                padding: "160px 24px 100px",
+                position: "relative",
+                textAlign: "center"
+            }}>
+                {/* Vertical Text */}
+                <div className="vertical-text hide-sm" style={{
+                    position: "absolute",
+                    left: 40,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    height: "fit-content"
+                }}>
+                    SCROLL & DISCOVER —
+                </div>
+
+                <div ref={ref1} className={`reveal ${vis1 ? 'reveal-active' : ''}`} style={{ maxWidth: 1000, margin: "0 auto" }}>
                     <span style={{
                         fontFamily: "var(--sans)",
-                        fontSize: "0.8rem",
+                        fontSize: "0.85rem",
                         fontWeight: 700,
                         letterSpacing: "0.2em",
                         textTransform: "uppercase",
-                        color: "var(--warm-accent)",
+                        color: "var(--anita-green)",
                         display: "block",
                         marginBottom: 20
-                    }}>Signature Collection</span>
+                    }}>Discover Our Amazing</span>
                     <h1 style={{
                         fontFamily: "var(--serif)",
-                        fontSize: "clamp(3rem, 6vw, 4.5rem)",
-                        fontWeight: 800,
-                        color: "var(--warm-dark)",
-                        lineHeight: 1.1,
-                        marginBottom: 24
+                        fontSize: "clamp(4rem, 10vw, 8rem)",
+                        fontWeight: 400,
+                        color: "var(--anita-green)",
+                        lineHeight: 1,
+                        margin: 0,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em"
                     }}>
-                        Every Flavor, <br />
-                        <span style={{ fontStyle: "italic", fontWeight: 400 }}>A New Story.</span>
+                        Flavors
                     </h1>
-                    <p style={{
-                        fontFamily: "var(--sans)",
-                        fontSize: "1.1rem",
-                        lineHeight: 1.7,
-                        color: "var(--muted)",
-                        maxWidth: 600
-                    }}>
-                        From seasonal fruit harvests to classic artisanal crumbles, explore our curated selection of pure milk delights.
-                    </p>
+                    <div style={{ marginTop: 24, fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.2em", color: "var(--anita-green)" }}>
+                        HOME . FLAVORS
+                    </div>
                 </div>
+            </div>
 
-                {/* Filter Bar */}
+            <div style={{ maxWidth: 1400, margin: "0 auto", padding: "80px 24px" }}>
+
+                {/* Filter Bar - Anita Style */}
                 <div style={{
                     display: "flex",
+                    justifyContent: "center",
                     gap: 12,
                     flexWrap: "wrap",
-                    marginBottom: 60,
-                    borderBottom: "1px solid var(--border)",
-                    paddingBottom: 20
+                    marginBottom: 80,
                 }}>
                     {CATS.map(c => (
                         <button
                             key={c}
                             onClick={() => setActiveCat(c)}
-                            style={{
-                                padding: "8px 20px",
-                                borderRadius: "99px",
-                                border: activeCat === c ? "none" : "1px solid var(--border)",
-                                background: activeCat === c ? "var(--warm-dark)" : "transparent",
-                                color: activeCat === c ? "var(--white)" : "var(--warm-dark)",
-                                fontFamily: "var(--sans)",
-                                fontSize: "0.8rem",
-                                fontWeight: 700,
-                                cursor: "pointer",
-                                transition: "all 0.3s var(--ease-out)"
-                            }}
+                            className={`anita-filter-tab ${activeCat === c ? 'active' : ''}`}
                         >
                             {c}
                         </button>
@@ -82,48 +84,43 @@ export default function FlavorsPage() {
                 {/* Flavors Grid */}
                 <div style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-                    gap: 40
+                    gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
+                    gap: "60px 40px"
                 }}>
                     {filtered.map((f, i) => (
-                        <div key={f.id} className="reveal reveal-active" style={{ // Forcing active for grid simplicity, or could use staggered reveal
-                            background: "var(--white)",
-                            borderRadius: "var(--r-lg)",
-                            overflow: "hidden",
-                            boxShadow: "0 15px 35px rgba(60,47,47,0.08)",
-                            border: "1px solid var(--border)",
-                            transition: "transform 0.4s var(--ease-out)",
-                            display: "flex",
-                            flexDirection: "column"
-                        }}>
-                            <div style={{ height: 480, overflow: "hidden", position: "relative", background: f.bg || "var(--warm-cream)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <div key={f.id} className="anita-card">
+                            <div className="anita-arched-img" style={{ background: f.bg || "var(--anita-beige)" }}>
                                 <img
                                     src={f.image}
                                     alt={f.name}
-                                    style={{ width: "100%", height: "100%", objectFit: "contain", transition: "transform 0.6s ease" }}
-                                    onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
+                                    style={{ transition: "transform 0.6s ease" }}
+                                    onMouseEnter={e => e.currentTarget.style.transform = "scale(1.08)"}
                                     onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                                 />
-                                <div style={{
-                                    position: "absolute",
-                                    top: 16,
-                                    right: 16,
-                                    background: "var(--warm-dark)",
-                                    color: "var(--white)",
-                                    padding: "4px 12px",
-                                    borderRadius: "99px",
-                                    fontSize: "0.65rem",
-                                    fontWeight: 800,
-                                    letterSpacing: "0.05em",
-                                    textTransform: "uppercase"
-                                }}>
-                                    {f.cat}
-                                </div>
                             </div>
 
-                            <div style={{ padding: 32, flex: 1, display: "flex", flexDirection: "column" }}>
-                                <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", fontWeight: 700, color: "var(--warm-dark)", marginBottom: 12 }}>{f.name}</h3>
-                                <p style={{ fontFamily: "var(--sans)", fontSize: "0.95rem", lineHeight: 1.6, color: "var(--muted)", flex: 1 }}>{f.desc}</p>
+                            <div style={{ padding: "40px 0 0", textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <h3 style={{
+                                    fontFamily: "var(--serif)",
+                                    fontSize: "1.75rem",
+                                    fontWeight: 700,
+                                    color: "var(--anita-green)",
+                                    marginBottom: 12,
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.05em"
+                                }}>{f.name}</h3>
+                                <p style={{
+                                    fontFamily: "var(--serif)",
+                                    fontSize: "0.95rem",
+                                    fontStyle: "italic",
+                                    lineHeight: 1.6,
+                                    color: "var(--muted)",
+                                    maxWidth: 320,
+                                    marginBottom: 32,
+                                    flex: 1
+                                }}>{f.desc}</p>
+
+                                <button className="anita-btn">See More</button>
                             </div>
                         </div>
                     ))}
