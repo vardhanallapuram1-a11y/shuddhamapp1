@@ -51,18 +51,6 @@ export default function Hero() {
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 820);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  useEffect(() => {
-    const t = setInterval(() => paginate(1), 6000);
-    return () => clearInterval(t);
-  }, [index]);
-
   const paginate = (dir) => {
     setDirection(dir);
     setIndex((prev) => (prev + dir + SLIDES.length) % SLIDES.length);
@@ -72,6 +60,22 @@ export default function Hero() {
     setDirection(i > index ? 1 : -1);
     setIndex(i);
   };
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 820);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Auto-play: inline state updates to avoid stale closure
+  useEffect(() => {
+    const t = setInterval(() => {
+      setDirection(1);
+      setIndex((prev) => (prev + 1 + SLIDES.length) % SLIDES.length);
+    }, 3000);
+    return () => clearInterval(t);
+  }, []);
 
   const Dots = () => (
     <div style={{ display: "flex", justifyContent: "center", gap: "6px" }}>
@@ -117,7 +121,7 @@ export default function Hero() {
         </div>
 
         {/* Content below image — in normal flow, always visible */}
-        <div style={{ padding: "18px 20px 24px", background: "#fff", textAlign: "center" }}>
+        <div style={{ padding: "8px 5px 1px", background: "#fff", textAlign: "center" }}>
           <p style={{ fontSize: "0.58rem", fontWeight: 700, color: "#a0a0a0", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 4 }}>
             Shuddham Excellence
           </p>
@@ -127,15 +131,15 @@ export default function Hero() {
             <span style={{ color: slide.accent }}>{slide.title.split(" ").slice(2).join(" ")}</span>
           </h1>
 
-          <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#6d6d6d", marginBottom: 8 }}>
+          <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#6d6d6d", marginBottom: 4 }}>
             {slide.subtitle}
           </p>
 
-          <p style={{ fontSize: "0.8rem", lineHeight: 1.5, color: "#888", marginBottom: 14 }}>
+          <p style={{ fontSize: "0.78rem", lineHeight: 1.4, color: "#888", marginBottom: 8 }}>
             {slide.desc}
           </p>
 
-          <div style={{ marginBottom: 14 }}>
+          <div style={{ marginBottom: 8 }}>
             <Dots />
           </div>
 

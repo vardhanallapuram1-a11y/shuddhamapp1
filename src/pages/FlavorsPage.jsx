@@ -62,19 +62,23 @@ export default function FlavorsPage() {
 
             <div style={{ maxWidth: 1400, margin: "0 auto", padding: "80px 24px" }}>
 
-                {/* Filter Bar - Anita Style */}
+                {/* Filter Bar - horizontally scrollable on mobile */}
                 <div style={{
                     display: "flex",
-                    justifyContent: "center",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginBottom: 80,
+                    justifyContent: "flex-start",
+                    gap: 10,
+                    overflowX: "auto",
+                    paddingBottom: 8,
+                    marginBottom: 60,
+                    msOverflowStyle: "none",
+                    scrollbarWidth: "none"
                 }}>
                     {CATS.map(c => (
                         <button
                             key={c}
                             onClick={() => setActiveCat(c)}
                             className={`anita-filter-tab ${activeCat === c ? 'active' : ''}`}
+                            style={{ flexShrink: 0 }}
                         >
                             {c}
                         </button>
@@ -84,7 +88,7 @@ export default function FlavorsPage() {
                 {/* Flavors Grid */}
                 <div style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
                     gap: "60px 40px"
                 }}>
                     {filtered.map((f, i) => (
