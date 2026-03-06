@@ -1,21 +1,49 @@
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import heroImg from "../assets/images/hero_ice_cream_splashes.png";
-import { FLAVORS } from "../data/content";
+
+import heroImg1 from "../assets/images/hero_ice_cream_splashes.png";
+import heroImg2 from "../assets/images/hero_premium.png";
+import heroImg3 from "../assets/images/hero_warm_elegance.png";
+import heroImg4 from "../assets/images/hero_ice_cream_joy.png";
+
+const SLIDES = [
+  {
+    image: heroImg1,
+    title: "Fresh Natural Heavenly",
+    subtitle: "That's Our Promise",
+    desc: "Handcrafted ice cream made from farm-fresh milk, real fruits, and zero shortcuts. Experience the Shuddham promise.",
+    accent: "#7d4b4b"
+  },
+  {
+    image: heroImg2,
+    title: "Pure Milk Indulgence",
+    subtitle: "Zero Artificials",
+    desc: "We bring you the richest textures using only the finest ingredients sourced directly from local farms.",
+    accent: "#4e342e"
+  },
+  {
+    image: heroImg3,
+    title: "Artisanal Excellence",
+    subtitle: "Crafted with Care",
+    desc: "Every scoop is a result of patience and a passion for perfection. Tradition meets modern taste.",
+    accent: "#614e41"
+  },
+  {
+    image: heroImg4,
+    title: "Sweet Moments",
+    subtitle: "For Every Family",
+    desc: "Sharing joy, one scoop at a time. Shuddham is made for those who value purity above all else.",
+    accent: "#8c6e6e"
+  }
+];
 
 export default function Hero() {
-  const containerRef = useRef(null);
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 820);
@@ -24,192 +52,243 @@ export default function Hero() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const arcItems = FLAVORS.slice(0, 3);
+  // Auto-play
+  useEffect(() => {
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [index]);
+
+  const paginate = (newDirection) => {
+    setDirection(newDirection);
+    setIndex((prevIndex) => (prevIndex + newDirection + SLIDES.length) % SLIDES.length);
+  };
+
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+      scale: 1.1
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.5 },
+        scale: { duration: 0.8 }
+      }
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 0,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.5 }
+      }
+    })
+  };
 
   return (
     <section
       id="hero"
-      ref={containerRef}
       style={{
-        minHeight: isMobile ? "auto" : "100vh",
-        background: "var(--hero-gradient)",
+        height: isMobile ? "clamp(600px, 90vh, 800px)" : "100vh",
+        background: "#fffaf7",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: isMobile ? "100px 20px 60px" : "120px 40px 100px",
-        overflow: "hidden",
-        position: "relative"
+        position: "relative",
+        overflow: "hidden"
       }}
     >
-      {/* Decorative Background Elements - Hidden on mobile for performance/clarity */}
-      {!isMobile && (
-        <motion.div style={{
-          position: "absolute",
-          top: "10%",
-          left: "5%",
-          width: "250px",
-          height: "250px",
-          background: "url('https://api.iconify.design/lucide:cone.svg?color=%23fce4ec') no-repeat center/contain",
-          opacity: 0.1,
-          y: y2,
-          filter: "blur(4px)"
-        }} />
-      )}
-
-      <div className="hero-grid" style={{
-        maxWidth: 1400,
-        margin: "0 auto",
-        width: "100%",
-        display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr",
-        alignItems: "center",
-        gap: isMobile ? "40px" : "60px",
-        position: "relative",
-        zIndex: 10,
-        textAlign: isMobile ? "center" : "left"
-      }}>
-
-        <div style={{ order: isMobile ? 2 : 1 }}>
-          <ScrollReveal variant="fadeUp" delay={0.2}>
-            <p style={{
-              fontFamily: "var(--sans)",
-              fontWeight: 700,
-              fontSize: "0.85rem",
-              color: "#a0a0a0",
-              marginBottom: "0.5rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.2em"
-            }}>Welcome to Shuddham</p>
-            <h1 style={{
-              fontFamily: "var(--stencil-font)",
-              fontWeight: 900,
-              fontSize: isMobile ? "clamp(2.5rem, 15vw, 4rem)" : "clamp(3.5rem, 7vw, 6rem)",
-              lineHeight: 1,
-              letterSpacing: "-0.02em",
-              color: "#4e342e",
-              marginBottom: "1.5rem",
-              textTransform: "uppercase"
-            }}>
-              Fresh Natural <br />
-              <span style={{ color: "#7d4b4b" }}>Heavenly,</span><br />
-              <span style={{ fontSize: isMobile ? "1.5rem" : "2rem", color: "#6d6d6d", textTransform: "none", fontWeight: 700 }}>That's Our Promise</span>
-            </h1>
-          </ScrollReveal>
-
-          <ScrollReveal variant="fadeUp" delay={0.4}>
-            <p style={{
-              fontFamily: "var(--sans)",
-              fontSize: isMobile ? "1rem" : "1.1rem",
-              lineHeight: 1.6,
-              color: "#6d6d6d",
-              maxWidth: 480,
-              margin: isMobile ? "0 auto 2.5rem" : "0 0 3rem"
-            }}>
-              Handcrafted ice cream made from farm-fresh milk, real fruits, and zero shortcuts. Experience the Shuddham promise.
-            </p>
-          </ScrollReveal>
-        </div>
-
-        <div style={{ position: "relative", display: "flex", justifyContent: "center", order: isMobile ? 1 : 2 }}>
-          <ScrollReveal variant="zoomIn" delay={0.3}>
-            {/* "NEW!" Badge */}
-            <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
-              transition={{ repeat: Infinity, duration: 4 }}
-              style={{
-                position: "absolute",
-                top: isMobile ? "0px" : "0",
-                right: isMobile ? "10px" : "0",
-                zIndex: 20,
-                background: "white",
-                padding: "8px 16px",
-                borderRadius: "50% 50% 50% 0",
-                boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+      <AnimatePresence initial={false} custom={direction}>
+        <motion.div
+          key={index}
+          custom={direction}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            alignItems: "center"
+          }}
+        >
+          {/* Content Side */}
+          <div style={{
+            padding: isMobile ? "100px 24px 40px" : "0 80px",
+            zIndex: 10,
+            textAlign: isMobile ? "center" : "left",
+            order: isMobile ? 2 : 1
+          }}>
+            <ScrollReveal variant="fadeUp">
+              <p style={{
                 fontFamily: "var(--sans)",
-                fontWeight: 800,
-                fontSize: "1rem",
-                color: "#7d4b4b"
-              }}>
-              NEW!
-            </motion.div>
-
-            {/* Main Image */}
-            <div style={{ position: "relative", zIndex: 15, maxWidth: isMobile ? "280px" : "100%" }}>
-              <motion.img
-                src={heroImg}
-                alt="Premium Ice Cream"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))"
-                }}
-                animate={{ y: [0, -15, 0] }}
-                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              />
-            </div>
-          </ScrollReveal>
-        </div>
-      </div>
-
-      {/* Bottom Features - Replaces Arc on Mobile */}
-      <div style={{
-        position: isMobile ? "relative" : "absolute",
-        bottom: isMobile ? "auto" : "-150px",
-        left: isMobile ? "auto" : "50%",
-        transform: isMobile ? "none" : "translateX(-50%)",
-        width: isMobile ? "100%" : "800px",
-        height: isMobile ? "auto" : "400px",
-        border: isMobile ? "none" : "2px solid #fff0f0",
-        borderRadius: "50%",
-        display: "flex",
-        gap: isMobile ? "24px" : "0",
-        justifyContent: "center",
-        alignItems: isMobile ? "center" : "flex-start",
-        paddingTop: isMobile ? "0" : "40px",
-        marginTop: isMobile ? "50px" : "0",
-        padding: isMobile ? "20px" : "0"
-      }}>
-        {arcItems.map((item, i) => {
-          const angles = [-30, 0, 30];
-          const angle = angles[i];
-          const radius = 350;
-          const x = isMobile ? 0 : Math.sin(angle * (Math.PI / 180)) * radius;
-          const y = isMobile ? 0 : -Math.cos(angle * (Math.PI / 180)) * radius + radius;
-
-          return (
-            <div key={item.id} className="arc-item" style={{
-              position: isMobile ? "relative" : "absolute",
-              left: isMobile ? "auto" : `calc(50% + ${x}px)`,
-              top: isMobile ? "auto" : `${y}px`,
-              width: isMobile ? "auto" : "80px",
-              transform: isMobile ? "none" : "translateX(-50%)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center"
-            }}>
-              <div style={{
-                width: "56px",
-                height: "56px",
-                background: "white",
-                borderRadius: "50%",
-                padding: "5px",
-                boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
-                marginBottom: "8px"
-              }}>
-                <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-              </div>
-              <span style={{
-                fontFamily: "var(--sans)",
-                fontSize: "0.65rem",
                 fontWeight: 700,
+                fontSize: "0.85rem",
                 color: "#a0a0a0",
-                textAlign: "center"
-              }}>{item.name}</span>
-            </div>
-          );
-        })}
+                marginBottom: "0.5rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.2em"
+              }}>Shuddham Excellence</p>
+              <h1 style={{
+                fontFamily: "var(--stencil-font)",
+                fontWeight: 900,
+                fontSize: isMobile ? "clamp(2.5rem, 12vw, 3.5rem)" : "clamp(3.5rem, 6vw, 5.5rem)",
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                color: "#4e342e",
+                marginBottom: "1.5rem",
+                textTransform: "uppercase"
+              }}>
+                {SLIDES[index].title.split(' ').slice(0, 2).join(' ')} <br />
+                <span style={{ color: SLIDES[index].accent }}>{SLIDES[index].title.split(' ').slice(2).join(' ')}</span><br />
+                <span style={{ fontSize: isMobile ? "1.2rem" : "1.8rem", color: "#6d6d6d", textTransform: "none", fontWeight: 700 }}>
+                  {SLIDES[index].subtitle}
+                </span>
+              </h1>
+              <p style={{
+                fontFamily: "var(--sans)",
+                fontSize: isMobile ? "0.95rem" : "1.1rem",
+                lineHeight: 1.6,
+                color: "#6d6d6d",
+                maxWidth: 480,
+                margin: isMobile ? "0 auto 2.5rem" : "0 0 3rem"
+              }}>
+                {SLIDES[index].desc}
+              </p>
+              <div style={{ display: "flex", gap: "16px", justifyContent: isMobile ? "center" : "flex-start" }}>
+                <Link to="/flavors" className="btn" style={{ background: "var(--warm-dark)", color: "white", padding: "12px 32px", textDecoration: "none", borderRadius: "99px", fontWeight: 700 }}>Explore Flavors</Link>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Image Side */}
+          <div style={{
+            width: "100%",
+            height: isMobile ? "40%" : "100%",
+            position: "relative",
+            order: isMobile ? 1 : 2,
+            background: SLIDES[index].image.endsWith('.png') ? "transparent" : "#000"
+          }}>
+            <motion.img
+              src={SLIDES[index].image}
+              alt={SLIDES[index].title}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))"
+              }}
+            />
+            {/* Overlay for depth on full images */}
+            {!SLIDES[index].image.endsWith('.png') && (
+              <div style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(to right, rgba(255,250,247,1) 0%, rgba(255,250,247,0) 20%)",
+                display: isMobile ? "none" : "block"
+              }} />
+            )}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Arrows */}
+      <div style={{
+        position: "absolute",
+        bottom: isMobile ? "40px" : "80px",
+        right: isMobile ? "center" : "80px",
+        left: isMobile ? "0" : "auto",
+        width: isMobile ? "100%" : "auto",
+        display: "flex",
+        justifyContent: "center",
+        gap: "20px",
+        zIndex: 100
+      }}>
+        <button
+          onClick={() => paginate(-1)}
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "50%",
+            border: "1px solid #e0e0e0",
+            background: "white",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+            transition: "all 0.3s ease"
+          }}
+          onMouseEnter={(e) => e.target.style.background = "#f5f5f5"}
+          onMouseLeave={(e) => e.target.style.background = "white"}
+        >
+          <ChevronLeft size={24} color="#4e342e" />
+        </button>
+        <button
+          onClick={() => paginate(1)}
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "50%",
+            border: "1px solid #e0e0e0",
+            background: "white",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+            transition: "all 0.3s ease"
+          }}
+          onMouseEnter={(e) => e.target.style.background = "#f5f5f5"}
+          onMouseLeave={(e) => e.target.style.background = "white"}
+        >
+          <ChevronRight size={24} color="#4e342e" />
+        </button>
       </div>
-    </section >
+
+      {/* Pagination Dots */}
+      <div style={{
+        position: "absolute",
+        bottom: isMobile ? "110px" : "40px",
+        left: isMobile ? "50%" : "80px",
+        transform: isMobile ? "translateX(-50%)" : "none",
+        display: "flex",
+        gap: "10px",
+        zIndex: 100
+      }}>
+        {SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              setDirection(i > index ? 1 : -1);
+              setIndex(i);
+            }}
+            style={{
+              width: index === i ? "30px" : "10px",
+              height: "10px",
+              borderRadius: "5px",
+              background: index === i ? "#4e342e" : "#d1d1d1",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              padding: 0
+            }}
+          />
+        ))}
+      </div>
+    </section>
   );
 }

@@ -10,16 +10,6 @@ export default function Partnership() {
 
                 {/* Page Header */}
                 <div ref={ref1} className={`reveal ${vis1 ? 'reveal-active' : ''}`} style={{ marginBottom: 80, textAlign: "center" }}>
-                    <span style={{
-                        fontFamily: "var(--sans)",
-                        fontSize: "0.8rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        color: "var(--warm-accent)",
-                        display: "block",
-                        marginBottom: 20
-                    }}>Business Partnerships</span>
                     <h1 style={{
                         fontFamily: "var(--serif)",
                         fontSize: "clamp(3rem, 7vw, 5rem)",

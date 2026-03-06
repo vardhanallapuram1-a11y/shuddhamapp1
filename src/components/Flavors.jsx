@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useDragScroll } from "../hooks";
 import splitImg from "../assets/images/split_editorial.png";
 import { FLAVORS } from "../data/content";
@@ -36,6 +37,11 @@ export default function FlavorSystem() {
       left: index * (320 + 40),
       behavior: "smooth"
     });
+  };
+
+  const nav = (dir) => {
+    const newIdx = Math.max(0, Math.min(SIGNATURE_PRODUCTS.length - 1, activeIndex + dir));
+    scrollTo(newIdx);
   };
 
   return (
@@ -129,7 +135,7 @@ export default function FlavorSystem() {
       </section>
 
       {/* Product Gallery Section with Sliding Area */}
-      <section style={{ padding: "clamp(80px, 10vw, 120px) 0", textAlign: "left" }}>
+      <section style={{ padding: "clamp(80px, 10vw, 120px) 0", textAlign: "left", position: "relative" }}>
         <div style={{ maxWidth: 1400, margin: "0 24px 60px", paddingLeft: "clamp(0px, 4vw, 40px)", textAlign: "center" }}>
           <h2 style={{
             fontFamily: "var(--serif)",
@@ -142,34 +148,84 @@ export default function FlavorSystem() {
             Signature Selection
           </h2>
           <p style={{ fontFamily: "var(--sans)", fontSize: "0.9rem", color: "var(--muted)", marginTop: 12 }}>
-            Drag to explore our full range of pure delights
+            Drag or use arrows to explore our full range
           </p>
         </div>
 
-        <div
-          ref={railRef}
-          className="fl-rail"
-          {...drag}
-          style={{
-            display: "flex",
-            gap: "40px",
-            padding: "0 clamp(24px, 5vw, 40px)",
-            width: "100%",
-            scrollSnapType: "x mandatory"
-          }}
-        >
-          {SIGNATURE_PRODUCTS.map(p => (
-            <div key={p.id} className="anita-card" style={{ flex: "0 0 320px", scrollSnapAlign: "center", padding: "0 0 30px" }}>
-              <div className="anita-arched-img" style={{ background: p.bg || "rgba(0,0,0,0.03)", aspectRatio: "1/1.2" }}>
-                <img src={p.image} alt={p.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        <div style={{ position: "relative", maxWidth: 1400, margin: "0 auto" }}>
+          {/* Arrows for Desktop */}
+          <button
+            onClick={() => nav(-1)}
+            style={{
+              position: "absolute",
+              left: "10px",
+              top: "40%",
+              zIndex: 10,
+              background: "white",
+              border: "1px solid var(--border)",
+              borderRadius: "50%",
+              width: 50,
+              height: 50,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
+            }}
+          >
+            <ChevronLeft size={24} color="var(--anita-green)" />
+          </button>
+
+          <button
+            onClick={() => nav(1)}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "40%",
+              zIndex: 10,
+              background: "white",
+              border: "1px solid var(--border)",
+              borderRadius: "50%",
+              width: 50,
+              height: 50,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
+            }}
+          >
+            <ChevronRight size={24} color="var(--anita-green)" />
+          </button>
+
+          <div
+            ref={railRef}
+            className="fl-rail"
+            {...drag}
+            style={{
+              display: "flex",
+              gap: "40px",
+              padding: "0 clamp(24px, 5vw, 40px)",
+              width: "100%",
+              scrollSnapType: "x mandatory",
+              overflowX: "auto",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none"
+            }}
+          >
+            {SIGNATURE_PRODUCTS.map(p => (
+              <div key={p.id} className="anita-card" style={{ flex: "0 0 320px", scrollSnapAlign: "center", padding: "0 0 30px" }}>
+                <div className="anita-arched-img" style={{ background: p.bg || "rgba(0,0,0,0.03)", aspectRatio: "1/1.2" }}>
+                  <img src={p.image} alt={p.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                </div>
+                <div style={{ padding: "30px 10px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.25rem", fontWeight: 700, color: "var(--anita-green)", marginBottom: 8, textTransform: "uppercase" }}>{p.name}</h3>
+                  <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.85rem", color: "var(--muted)", marginBottom: 20, height: "3.2em", overflow: "hidden", lineHeight: 1.6 }}>{p.desc}</p>
+                  <button className="anita-btn" style={{ padding: "10px 24px", fontSize: "0.75rem" }}>See More</button>
+                </div>
               </div>
-              <div style={{ padding: "30px 10px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.25rem", fontWeight: 700, color: "var(--anita-green)", marginBottom: 8, textTransform: "uppercase" }}>{p.name}</h3>
-                <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.85rem", color: "var(--muted)", marginBottom: 20, height: "3.2em", overflow: "hidden", lineHeight: 1.6 }}>{p.desc}</p>
-                <button className="anita-btn" style={{ padding: "10px 24px", fontSize: "0.75rem" }}>See More</button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Pagination Dots */}

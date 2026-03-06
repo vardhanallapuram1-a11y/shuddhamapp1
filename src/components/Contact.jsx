@@ -21,16 +21,6 @@ export default function Contact() {
         }}>
           <div>
             <div style={{ marginBottom: 40 }}>
-              <span style={{
-                fontFamily: "var(--sans)",
-                fontSize: "0.8rem",
-                fontWeight: 700,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "var(--warm-accent)",
-                display: "block",
-                marginBottom: 16
-              }}>Get in Touch</span>
               <h2 style={{
                 fontFamily: "var(--serif)",
                 fontWeight: 800,
