@@ -149,7 +149,7 @@ body {
   }
 
   section {
-    padding: 80px 24px !important;
+    padding: 40px 24px;
   }
 
   #hero {
@@ -532,7 +532,7 @@ body {
 .mq-wrap {
   overflow: hidden;
   background: var(--tiger-dk);
-  padding: 14px 0;
+  padding: 6px 0;
 }
 
 .mq-track {
@@ -1116,8 +1116,8 @@ body {
   .grid-2,
   .grid-3,
   .grid-4 {
-    grid-template-columns: 1fr !important;
-    gap: 40px !important;
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 }
 

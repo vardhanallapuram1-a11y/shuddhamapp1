@@ -6,14 +6,14 @@ export default function WhyUs() {
 
   return (
     <section id="why" style={{
-      padding: "clamp(60px, 10vw, 120px) 24px",
+      padding: "clamp(12px, 3vw, 48px) 24px",
       background: "var(--ice-brown)",
       position: "relative",
       overflow: "hidden"
     }}>
       <div style={{ position: "absolute", top: "10%", right: "-10%", width: "50vmax", height: "50vmax", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,133,162,0.15) 0%, transparent 70%)", pointerEvents: "none" }} />
       <div ref={ref} style={{ maxWidth: 1400, margin: "0 auto", position: "relative" }}>
-        <div style={{ marginBottom: 64 }} className={`reveal ${vis ? 'reveal-active' : ''}`}>
+        <div style={{ marginBottom: 36 }} className={`reveal ${vis ? 'reveal-active' : ''}`}>
           <span style={{
             fontFamily: "var(--sans)",
             fontSize: "0.8rem",
@@ -27,7 +27,7 @@ export default function WhyUs() {
           <h2 className="reveal-delay-1" style={{
             fontFamily: "var(--serif)",
             fontWeight: 800,
-            fontSize: "clamp(2.5rem, 5vw, 4rem)",
+            fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",
             letterSpacing: "-0.02em",
             color: "var(--white)",
             lineHeight: 1.1

@@ -11,7 +11,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" style={{ padding: "clamp(60px, 10vw, 120px) 24px", background: "var(--warm-bg)" }}>
+    <section id="contact" style={{ padding: "clamp(12px, 6vw, 100px) 24px", background: "var(--warm-bg)" }}>
       <div ref={ref} style={{ maxWidth: 1400, margin: "0 auto" }}>
         <div className={`reveal reveal-delay-2 ${vis ? "reveal-active" : ""}`} style={{
           display: "grid",
@@ -24,7 +24,7 @@ export default function Contact() {
               <h2 style={{
                 fontFamily: "var(--serif)",
                 fontWeight: 800,
-                fontSize: "clamp(2.5rem, 5vw, 4rem)",
+                fontSize: "clamp(2.0rem, 5vw, 2.5rem)",
                 letterSpacing: "-0.02em",
                 color: "var(--warm-dark)",
                 lineHeight: 1.1

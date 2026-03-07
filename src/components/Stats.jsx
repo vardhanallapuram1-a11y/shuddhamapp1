@@ -13,7 +13,7 @@ function StatNum({ target, suffix }) {
 
 export default function Stats() {
   return (
-    <section style={{ background: "var(--warm-dark)", padding: "40px 0" }}>
+    <section style={{ background: "var(--warm-dark)", padding: "clamp(20px, 4vw, 40px) 0" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 32 }}>
         {STATS.map((s) => (
           <div key={s.label} className="stat-block" style={{ textAlign: "center", padding: "20px" }}>

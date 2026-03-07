@@ -8,7 +8,7 @@ export default function Story() {
   ];
 
   return (
-    <section id="story" style={{ padding: "clamp(60px, 8vw, 100px) 24px", background: "var(--warm-bg)" }}>
+    <section id="story" style={{ padding: "clamp(8px, 5vw, 80px) 24px", background: "var(--warm-bg)" }}>
       <div style={{
         maxWidth: 1400,
         margin: "0 auto",

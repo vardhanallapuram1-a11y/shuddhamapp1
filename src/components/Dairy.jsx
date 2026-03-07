@@ -16,7 +16,7 @@ export default function Dairy() {
   const y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-    <section id="dairy" ref={containerRef} style={{ padding: "clamp(60px, 10vw, 120px) 24px", background: "var(--ice-lavender-light)", position: "relative" }}>
+    <section id="dairy" ref={containerRef} style={{ padding: "clamp(12px, 6vw, 100px) 24px", background: "var(--ice-lavender-light)", position: "relative" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }}>
         <div style={{
           display: "grid",

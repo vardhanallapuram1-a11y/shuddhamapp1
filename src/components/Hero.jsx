@@ -121,7 +121,7 @@ export default function Hero() {
         </div>
 
         {/* Content below image — in normal flow, always visible */}
-        <div style={{ padding: "8px 5px 1px", background: "#fff", textAlign: "center" }}>
+        <div style={{ padding: "4px 5px 0", background: "#fff", textAlign: "center" }}>
           <p style={{ fontSize: "0.58rem", fontWeight: 700, color: "#a0a0a0", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 4 }}>
             Shuddham Excellence
           </p>

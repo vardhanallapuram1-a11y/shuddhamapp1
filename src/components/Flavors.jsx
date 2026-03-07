@@ -13,6 +13,17 @@ export default function FlavorSystem() {
   const railRef = useRef(null);
   const drag = useDragScroll(railRef);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-play logic
+  useEffect(() => {
+    if (isPaused || drag.isDragging) return;
+    const interval = setInterval(() => {
+      const nextIndex = (activeIndex + 1) % SIGNATURE_PRODUCTS.length;
+      scrollTo(nextIndex);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [isPaused, activeIndex, drag.isDragging]);
 
   // Track scroll position to update active dot
   useEffect(() => {
@@ -20,9 +31,8 @@ export default function FlavorSystem() {
     if (!rail) return;
 
     const handleScroll = () => {
-      const scrollPos = rail.scrollLeft;
-      const cardWidthWithGap = 320 + 40; // Card width (320px) + gap (40px)
-      const index = Math.round(scrollPos / cardWidthWithGap);
+      const cardWidth = 300 + 40; // Card (300) + Gap (40)
+      const index = Math.round(rail.scrollLeft / cardWidth);
       setActiveIndex(Math.min(index, SIGNATURE_PRODUCTS.length - 1));
     };
 
@@ -34,13 +44,13 @@ export default function FlavorSystem() {
     const rail = railRef.current;
     if (!rail) return;
     rail.scrollTo({
-      left: index * (320 + 40),
+      left: index * (300 + 40),
       behavior: "smooth"
     });
   };
 
   const nav = (dir) => {
-    const newIdx = Math.max(0, Math.min(SIGNATURE_PRODUCTS.length - 1, activeIndex + dir));
+    const newIdx = (activeIndex + dir + SIGNATURE_PRODUCTS.length) % SIGNATURE_PRODUCTS.length;
     scrollTo(newIdx);
   };
 
@@ -48,7 +58,7 @@ export default function FlavorSystem() {
     <div id="flavors" style={{ background: "var(--anita-beige)", position: "relative" }}>
       {/* Editorial Split Section */}
       <section style={{
-        padding: "clamp(60px, 10vw, 120px) 24px",
+        padding: "clamp(12px, 6vw, 100px) 24px clamp(16px, 6vw, 48px)",
         maxWidth: 1400,
         margin: "0 auto",
       }}>
@@ -56,7 +66,7 @@ export default function FlavorSystem() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           alignItems: "center",
-          gap: "clamp(40px, 8vw, 100px)"
+          gap: "clamp(12px, 8vw, 100px)"
         }}>
           <div style={{ textAlign: "left" }}>
             <span style={{
@@ -72,7 +82,7 @@ export default function FlavorSystem() {
 
             <h2 style={{
               fontFamily: "var(--serif)",
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              fontSize: "clamp(1.6rem, 4vw, 3rem)",
               fontWeight: 400,
               lineHeight: 1.1,
               color: "var(--anita-green)",
@@ -135,11 +145,11 @@ export default function FlavorSystem() {
       </section>
 
       {/* Product Gallery Section with Sliding Area */}
-      <section style={{ padding: "clamp(80px, 10vw, 120px) 0", textAlign: "left", position: "relative" }}>
-        <div style={{ maxWidth: 1400, margin: "0 24px 60px", paddingLeft: "clamp(0px, 4vw, 40px)", textAlign: "center" }}>
+      <section style={{ padding: "clamp(16px, 6vw, 48px) 0 clamp(6px, 2vw, 32px)", textAlign: "left", position: "relative" }}>
+        <div style={{ maxWidth: 1400, margin: "0 24px 20px", paddingLeft: "clamp(0px, 4vw, 40px)", textAlign: "center" }}>
           <h2 style={{
             fontFamily: "var(--serif)",
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontSize: "clamp(1.4rem, 3.5vw, 2.4rem)",
             fontWeight: 400,
             color: "var(--anita-green)",
             letterSpacing: "0.05em",
@@ -147,8 +157,8 @@ export default function FlavorSystem() {
           }}>
             Signature Selection
           </h2>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.9rem", color: "var(--muted)", marginTop: 12 }}>
-            Drag or use arrows to explore our full range
+          <p style={{ fontFamily: "var(--sans)", fontSize: "0.85rem", color: "var(--muted)", marginTop: 8, fontStyle: "italic" }}>
+            Pure ingredients, unforgettable flavours
           </p>
         </div>
 
@@ -202,6 +212,8 @@ export default function FlavorSystem() {
             ref={railRef}
             className="fl-rail"
             {...drag}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
             style={{
               display: "flex",
               gap: "40px",
@@ -214,14 +226,16 @@ export default function FlavorSystem() {
             }}
           >
             {SIGNATURE_PRODUCTS.map(p => (
-              <div key={p.id} className="anita-card" style={{ flex: "0 0 320px", scrollSnapAlign: "center", padding: "0 0 30px" }}>
-                <div className="anita-arched-img" style={{ background: p.bg || "rgba(0,0,0,0.03)", aspectRatio: "1/1.2" }}>
-                  <img src={p.image} alt={p.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              <div key={p.id} className="anita-card" style={{ flex: "0 0 300px", scrollSnapAlign: "center", padding: "0 0 16px" }}>
+                {/* Image dominates — taller ratio, full bleed */}
+                <div className="anita-arched-img" style={{ background: p.bg || "rgba(0,0,0,0.03)", aspectRatio: "1/1.4", borderRadius: "inherit" }}>
+                  <img src={p.image} alt={p.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
-                <div style={{ padding: "30px 10px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.25rem", fontWeight: 700, color: "var(--anita-green)", marginBottom: 8, textTransform: "uppercase" }}>{p.name}</h3>
-                  <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.85rem", color: "var(--muted)", marginBottom: 20, height: "3.2em", overflow: "hidden", lineHeight: 1.6 }}>{p.desc}</p>
-                  <button className="anita-btn" style={{ padding: "10px 24px", fontSize: "0.75rem" }}>See More</button>
+                {/* Supporting text — compact, secondary */}
+                <div style={{ padding: "14px 10px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", fontWeight: 700, color: "var(--anita-green)", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.04em" }}>{p.name}</h3>
+                  <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.78rem", color: "var(--muted)", marginBottom: 12, height: "2.8em", overflow: "hidden", lineHeight: 1.5, opacity: 0.85 }}>{p.desc}</p>
+                  <button className="anita-btn" style={{ padding: "8px 20px", fontSize: "0.72rem" }}>See More</button>
                 </div>
               </div>
             ))}
@@ -233,7 +247,8 @@ export default function FlavorSystem() {
           display: "flex",
           justifyContent: "center",
           gap: 12,
-          marginTop: 40
+          marginTop: 6,
+          paddingBottom: 4
         }}>
           {SIGNATURE_PRODUCTS.map((_, i) => (
             <button
@@ -255,7 +270,7 @@ export default function FlavorSystem() {
           ))}
         </div>
       </section>
-      <DripDivider color="var(--anita-beige)" position="bottom" height={80} />
+      <DripDivider color="var(--anita-beige)" position="bottom" height={30} />
     </div>
   );
 }
