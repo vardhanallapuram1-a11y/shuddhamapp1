@@ -69,16 +69,6 @@ export default function FlavorSystem() {
           gap: "clamp(12px, 8vw, 100px)"
         }}>
           <div style={{ textAlign: "left" }}>
-            <span style={{
-              fontFamily: "var(--sans)",
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "var(--anita-pink)",
-              display: "block",
-              marginBottom: 16
-            }}>About Our Craft</span>
 
             <h2 style={{
               fontFamily: "var(--serif)",
@@ -157,9 +147,6 @@ export default function FlavorSystem() {
           }}>
             Signature Selection
           </h2>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.85rem", color: "var(--muted)", marginTop: 8, fontStyle: "italic" }}>
-            Pure ingredients, unforgettable flavours
-          </p>
         </div>
 
         <div style={{ position: "relative", maxWidth: 1400, margin: "0 auto" }}>
@@ -228,8 +215,8 @@ export default function FlavorSystem() {
             {SIGNATURE_PRODUCTS.map(p => (
               <div key={p.id} className="anita-card" style={{ flex: "0 0 300px", scrollSnapAlign: "center", padding: "0 0 16px" }}>
                 {/* Image dominates — taller ratio, full bleed */}
-                <div className="anita-arched-img" style={{ background: p.bg || "rgba(0,0,0,0.03)", aspectRatio: "1/1.4", borderRadius: "inherit" }}>
-                  <img src={p.image} alt={p.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div className="anita-arched-img" style={{ background: p.bg || "rgba(0,0,0,0.03)" }}>
+                  <img src={p.image} alt={p.name} loading="lazy" style={{ width: "100%", height: "auto", display: "block" }} />
                 </div>
                 {/* Supporting text — compact, secondary */}
                 <div style={{ padding: "14px 10px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>

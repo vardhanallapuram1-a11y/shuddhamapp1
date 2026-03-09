@@ -104,7 +104,7 @@ export default function Hero() {
     return (
       <section id="hero" style={{ background: "#fff" }}>
         {/* Full-width image with fixed height */}
-        <div style={{ width: "100%", height: "55vw", minHeight: 220, maxHeight: 340, position: "relative", overflow: "hidden", background: "#eee" }}>
+        <div style={{ width: "100%", display: "grid", gridTemplateColumns: "1fr", position: "relative", overflow: "hidden" }}>
           <AnimatePresence initial={false} custom={direction}>
             <motion.img
               key={index}
@@ -115,16 +115,13 @@ export default function Hero() {
               initial="enter"
               animate="center"
               exit="exit"
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              style={{ width: "100%", height: "auto", display: "block", gridArea: "1 / 1" }}
             />
           </AnimatePresence>
         </div>
 
         {/* Content below image — in normal flow, always visible */}
         <div style={{ padding: "4px 5px 0", background: "#fff", textAlign: "center" }}>
-          <p style={{ fontSize: "0.58rem", fontWeight: 700, color: "#a0a0a0", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 4 }}>
-            Shuddham Excellence
-          </p>
 
           <h1 style={{ fontFamily: "var(--stencil-font)", fontSize: "1.7rem", fontWeight: 900, lineHeight: 1.1, color: "#4e342e", textTransform: "uppercase", marginBottom: 4 }}>
             {slide.title.split(" ").slice(0, 2).join(" ")} <br />
@@ -183,9 +180,6 @@ export default function Hero() {
           {/* Content Left */}
           <div style={{ padding: "0 80px", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fff" }}>
             <ScrollReveal variant="fadeUp">
-              <p style={{ fontFamily: "var(--sans)", fontSize: "0.85rem", fontWeight: 700, color: "#a0a0a0", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
-                Shuddham Excellence
-              </p>
               <h1 style={{ fontFamily: "var(--stencil-font)", fontSize: "clamp(3.5rem, 6vw, 5.5rem)", fontWeight: 900, lineHeight: 1.1, color: "#4e342e", textTransform: "uppercase", marginBottom: "0.5rem" }}>
                 {SLIDES[index].title.split(" ").slice(0, 2).join(" ")} <br />
                 <span style={{ color: SLIDES[index].accent }}>{SLIDES[index].title.split(" ").slice(2).join(" ")}</span>
@@ -204,7 +198,7 @@ export default function Hero() {
 
           {/* Image Right */}
           <div style={{ position: "relative", overflow: "hidden", background: "#eee" }}>
-            <img src={SLIDES[index].image} alt={SLIDES[index].title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={SLIDES[index].image} alt={SLIDES[index].title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </div>
         </motion.div>
       </AnimatePresence>

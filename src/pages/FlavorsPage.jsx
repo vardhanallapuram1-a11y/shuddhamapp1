@@ -32,16 +32,6 @@ export default function FlavorsPage() {
                 </div>
 
                 <div ref={ref1} className={`reveal ${vis1 ? 'reveal-active' : ''}`} style={{ maxWidth: 1000, margin: "0 auto" }}>
-                    <span style={{
-                        fontFamily: "var(--sans)",
-                        fontSize: "0.85rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        color: "var(--anita-green)",
-                        display: "block",
-                        marginBottom: 20
-                    }}>Discover Our Amazing</span>
                     <h1 style={{
                         fontFamily: "var(--serif)",
                         fontSize: "clamp(4rem, 10vw, 8rem)",
@@ -97,7 +87,7 @@ export default function FlavorsPage() {
                                 <img
                                     src={f.image}
                                     alt={f.name}
-                                    style={{ transition: "transform 0.6s ease" }}
+                                    style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s ease" }}
                                     onMouseEnter={e => e.currentTarget.style.transform = "scale(1.08)"}
                                     onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                                 />

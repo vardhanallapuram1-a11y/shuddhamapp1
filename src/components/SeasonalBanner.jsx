@@ -7,16 +7,14 @@ export default function SeasonalBanner() {
   const summer = FLAVORS.filter(f => f.season === "Summer").slice(0, 3);
 
   return (
-    <section style={{ background: "var(--ink)", padding: "clamp(12px, 5vw, 80px) 32px", position: "relative", overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,169,255,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+    <section style={{ background: "var(--warm-bg)", padding: "clamp(12px, 5vw, 80px) 32px", position: "relative", overflow: "hidden" }}>
       <div ref={ref} style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 60, alignItems: "center", position: "relative" }}>
 
         <div className={`sr from-left ${vis ? "in" : ""}`}>
-          <span className="eyebrow sky" style={{ marginBottom: 16, display: "block" }}>Summer Collection</span>
-          <h2 style={{ fontFamily: "var(--serif)", fontWeight: 800, fontSize: "clamp(1.5rem, 3vw, 2.6rem)", letterSpacing: "-0.03em", color: "var(--white)", lineHeight: 1.1, marginBottom: 24 }}>
-            Pure Seasonal<br /><em style={{ fontStyle: "italic", color: "var(--tiger)" }}>Fruit Delights</em>
+          <h2 style={{ fontFamily: "var(--serif)", fontWeight: 800, fontSize: "clamp(1.5rem, 3vw, 2.6rem)", letterSpacing: "-0.03em", color: "var(--ice-brown)", lineHeight: 1.1, marginBottom: 24 }}>
+            Pure <em style={{ fontStyle: "italic", color: "var(--tiger)" }}>Delights</em>
           </h2>
-          <p style={{ fontFamily: "var(--sans)", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(255,255,255,0.55)", marginBottom: 36 }}>
+          <p style={{ fontFamily: "var(--sans)", fontWeight: 400, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(60,47,47,0.7)", marginBottom: 36 }}>
             Seasonal specials made from fresh summer fruits. Alphonso Mango, Tender Coconut, Kala Jamun — only while they last.
           </p>
           <Link to="/flavors" className="btn btn-tiger">Shop Seasonal →</Link>

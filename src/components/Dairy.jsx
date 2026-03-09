@@ -26,18 +26,6 @@ export default function Dairy() {
           marginBottom: 72
         }}>
           <div>
-            <ScrollReveal variant="fadeUp" delay={0.1}>
-              <span style={{
-                fontFamily: "var(--sans)",
-                fontSize: "0.8rem",
-                fontWeight: 700,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "var(--ice-lavender)",
-                display: "block",
-                marginBottom: 12
-              }}>Pure Dairy</span>
-            </ScrollReveal>
             <ScrollReveal variant="fadeUp" delay={0.2}>
               <h2 style={{
                 fontFamily: "var(--serif)",

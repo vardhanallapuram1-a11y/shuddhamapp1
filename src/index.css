@@ -194,8 +194,6 @@ body {
 /* Anita Gelato Specific Styles */
 .anita-arched-img {
   width: 100%;
-  aspect-ratio: 4/5;
-  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
   overflow: hidden;
   position: relative;
   background: var(--anita-beige);
@@ -203,7 +201,8 @@ body {
 
 .anita-arched-img img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   object-fit: contain;
 }
 

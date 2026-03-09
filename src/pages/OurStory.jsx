@@ -10,16 +10,6 @@ export default function OurStory() {
             {/* Intro Hero */}
             <section style={{ padding: "160px 40px 100px", textAlign: "center", borderBottom: "1px solid var(--border)" }}>
                 <div ref={ref1} className={`reveal ${vis1 ? 'reveal-active' : ''}`} style={{ maxWidth: 800, margin: "0 auto" }}>
-                    <span style={{
-                        fontFamily: "var(--sans)",
-                        fontSize: "0.8rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        color: "var(--warm-accent)",
-                        display: "block",
-                        marginBottom: 20
-                    }}>Our Origin</span>
                     <h1 style={{
                         fontFamily: "var(--serif)",
                         fontSize: "clamp(3rem, 7vw, 5rem)",
