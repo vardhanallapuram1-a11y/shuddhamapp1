@@ -20,7 +20,7 @@ export default function Header({ active }) {
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
       padding: scrolled ? "12px 32px" : "24px 32px",
       background: scrolled ? "rgba(255, 255, 255, 0.95)" : "transparent",
-      backdropFilter: scrolled ? "blur(10px)" : "none",
+      backdropFilter: scrolled ? "blur(10px)" : "blur(0px)",
       borderBottom: scrolled ? "1px solid #f0e6d6" : "none",
       transition: "all 0.4s var(--ease-out)",
     }}>
@@ -45,8 +45,11 @@ export default function Header({ active }) {
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               textDecoration: "none",
-              color: isActive ? "var(--warm-accent)" : "var(--warm-dark)",
-              transition: "color 0.2s"
+              color: "var(--warm-dark)",
+              opacity: isActive ? 1 : 0.6,
+              borderBottom: isActive ? "2px solid var(--warm-dark)" : "2px solid transparent",
+              paddingBottom: "4px",
+              transition: "all 0.4s var(--ease-out)"
             })}>
               {l.label}
             </NavLink>

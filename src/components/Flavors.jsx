@@ -215,14 +215,14 @@ export default function FlavorSystem() {
             {SIGNATURE_PRODUCTS.map(p => (
               <div key={p.id} className="anita-card" style={{ flex: "0 0 300px", scrollSnapAlign: "center", padding: "0 0 16px" }}>
                 {/* Image dominates — taller ratio, full bleed */}
-                <div className="anita-arched-img" style={{ background: p.bg || "rgba(0,0,0,0.03)" }}>
-                  <img src={p.image} alt={p.name} loading="lazy" style={{ width: "100%", height: "auto", display: "block" }} />
+                <div className="anita-arched-img">
+                  <img src={p.image} alt={p.name} loading="lazy" />
                 </div>
                 {/* Supporting text — compact, secondary */}
-                <div style={{ padding: "14px 10px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", fontWeight: 700, color: "var(--anita-green)", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.04em" }}>{p.name}</h3>
-                  <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.78rem", color: "var(--muted)", marginBottom: 12, height: "2.8em", overflow: "hidden", lineHeight: 1.5, opacity: 0.85 }}>{p.desc}</p>
-                  <button className="anita-btn" style={{ padding: "8px 20px", fontSize: "0.72rem" }}>See More</button>
+                <div style={{ padding: "20px 14px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <h3 style={{ fontFamily: "var(--serif)", fontSize: "0.95rem", fontWeight: 700, color: "var(--anita-green)", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.04em" }}>{p.name}</h3>
+                  <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.75rem", color: "var(--muted)", marginBottom: 12, height: "2.8em", overflow: "hidden", lineHeight: 1.4, opacity: 0.8 }}>{p.desc}</p>
+                  <button className="anita-btn" style={{ padding: "8px 20px", fontSize: "0.65rem" }}>See More</button>
                 </div>
               </div>
             ))}

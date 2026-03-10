@@ -125,18 +125,26 @@ export default function DairyPage() {
                                 </div>
                                 <div style={{
                                     order: isMobile ? 1 : (i % 2 === 0 ? 2 : 1),
-                                    background: "var(--warm-cream)",
                                     borderRadius: "var(--r-lg)",
+                                    overflow: "hidden",
                                     aspectRatio: "1.2/1",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    fontSize: isMobile ? "4rem" : "5rem",
-                                    maxWidth: isMobile ? "300px" : "100%",
-                                    margin: isMobile ? "0 auto" : "0"
+                                    maxWidth: isMobile ? "400px" : "100%",
+                                    margin: isMobile ? "0 auto" : "0",
+                                    boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
                                 }}>
-                                    {/* Placeholder for high-quality product render */}
-                                    {i === 3 ? "🏺" : i === 1 ? "🥣" : "🥛"}
+                                    <img
+                                        src={d.image}
+                                        alt={d.name}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "cover",
+                                            display: "block",
+                                            transition: "transform 0.6s var(--ease-out)"
+                                        }}
+                                        onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
+                                        onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+                                    />
                                 </div>
                             </div>
                         );

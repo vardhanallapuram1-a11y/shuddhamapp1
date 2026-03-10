@@ -24,7 +24,7 @@
   --warm-dark: var(--anita-green);
   --warm-accent: var(--anita-pink);
   --warm-cream: var(--anita-beige);
-  --fast: 0.2s;
+  --fast: 0.4s;
 
   --ocean: var(--ice-mint);
   --tiger: var(--ice-brown);
@@ -194,30 +194,36 @@ body {
 /* Anita Gelato Specific Styles */
 .anita-arched-img {
   width: 100%;
+  height: auto;
   overflow: hidden;
   position: relative;
-  background: var(--anita-beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
 }
 
 .anita-arched-img img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
 }
 
 .anita-card {
-  background: var(--anita-beige);
+  background: var(--anita-white);
   border-radius: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s var(--ease-out);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
   padding: 0 0 40px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .anita-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(34, 61, 51, 0.08);
 }
 
 .anita-btn {
@@ -316,6 +322,10 @@ body {
 .reveal-active {
   opacity: 1;
   transform: translateY(0);
+}
+
+header {
+  transition: background 0.6s var(--ease-out), backdrop-filter 0.6s var(--ease-out), padding 0.6s var(--ease-out), border-bottom 0.6s var(--ease-out) !important;
 }
 
 .reveal-delay-1 {

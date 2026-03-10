@@ -83,38 +83,39 @@ export default function FlavorsPage() {
                 }}>
                     {filtered.map((f, i) => (
                         <div key={f.id} className="anita-card">
-                            <div className="anita-arched-img" style={{ background: f.bg || "var(--anita-beige)" }}>
+                            <div className="anita-arched-img">
                                 <img
                                     src={f.image}
                                     alt={f.name}
-                                    style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s ease" }}
+                                    style={{ transition: "transform 0.6s ease" }}
                                     onMouseEnter={e => e.currentTarget.style.transform = "scale(1.08)"}
                                     onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                                 />
                             </div>
 
-                            <div style={{ padding: "40px 0 0", textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                            <div style={{ padding: "32px 20px", textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
                                 <h3 style={{
                                     fontFamily: "var(--serif)",
-                                    fontSize: "1.75rem",
+                                    fontSize: "1.3rem",
                                     fontWeight: 700,
                                     color: "var(--anita-green)",
-                                    marginBottom: 12,
+                                    marginBottom: 10,
                                     textTransform: "uppercase",
                                     letterSpacing: "0.05em"
                                 }}>{f.name}</h3>
                                 <p style={{
                                     fontFamily: "var(--serif)",
-                                    fontSize: "0.95rem",
+                                    fontSize: "0.85rem",
                                     fontStyle: "italic",
-                                    lineHeight: 1.6,
+                                    lineHeight: 1.5,
                                     color: "var(--muted)",
-                                    maxWidth: 320,
-                                    marginBottom: 32,
-                                    flex: 1
+                                    maxWidth: 300,
+                                    marginBottom: 24,
+                                    flex: 1,
+                                    opacity: 0.8
                                 }}>{f.desc}</p>
 
-                                <button className="anita-btn">See More</button>
+                                <button className="anita-btn" style={{ fontSize: "0.75rem", padding: "10px 24px" }}>See More</button>
                             </div>
                         </div>
                     ))}
