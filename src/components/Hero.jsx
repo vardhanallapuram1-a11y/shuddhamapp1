@@ -161,7 +161,7 @@ export default function Hero() {
 
   // ── DESKTOP LAYOUT ────────────────────────────────────
   return (
-    <section id="hero" style={{ height: "100vh", background: "#fff", position: "relative", overflow: "hidden" }}>
+    <section id="hero" style={{ height: "calc(100vh - 80px)", background: "#fff", position: "relative", overflow: "hidden" }}>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={index}
@@ -197,8 +197,8 @@ export default function Hero() {
           </div>
 
           {/* Image Right */}
-          <div style={{ position: "relative", overflow: "hidden", background: "#eee" }}>
-            <img src={SLIDES[index].image} alt={SLIDES[index].title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+          <div style={{ position: "relative", overflow: "hidden" }}>
+            <img src={SLIDES[index].image} alt={SLIDES[index].title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
           </div>
         </motion.div>
       </AnimatePresence>

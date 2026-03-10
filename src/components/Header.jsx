@@ -18,10 +18,10 @@ export default function Header({ active }) {
   return (
     <header style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-      padding: scrolled ? "12px 32px" : "24px 32px",
-      background: scrolled ? "rgba(255, 255, 255, 0.95)" : "transparent",
-      backdropFilter: scrolled ? "blur(10px)" : "blur(0px)",
-      borderBottom: scrolled ? "1px solid #f0e6d6" : "none",
+      padding: scrolled ? "12px 32px" : "18px 32px",
+      background: scrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.8)",
+      backdropFilter: "blur(10px)",
+      borderBottom: "1px solid #f0e6d6",
       transition: "all 0.4s var(--ease-out)",
     }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>

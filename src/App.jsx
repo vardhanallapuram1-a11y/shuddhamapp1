@@ -49,7 +49,7 @@ export default function App() {
       <CustomCursor />
       <div className="pg" style={{ width: `${progress}%` }} aria-hidden="true" />
       <Header active={active} />
-      <main>
+      <main style={{ paddingTop: "80px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/our-story" element={<OurStory />} />
