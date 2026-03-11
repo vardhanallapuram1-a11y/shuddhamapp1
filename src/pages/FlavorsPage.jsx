@@ -93,7 +93,7 @@ export default function FlavorsPage() {
                                 />
                             </div>
 
-                            <div style={{ padding: "32px 20px", textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                            <div style={{ padding: "28px 20px 0px", textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
                                 <h3 style={{
                                     fontFamily: "var(--serif)",
                                     fontSize: "1.3rem",
@@ -110,7 +110,7 @@ export default function FlavorsPage() {
                                     lineHeight: 1.5,
                                     color: "var(--muted)",
                                     maxWidth: 300,
-                                    marginBottom: 24,
+                                    marginBottom: 0,
                                     flex: 1,
                                     opacity: 0.8
                                 }}>{f.desc}</p>
