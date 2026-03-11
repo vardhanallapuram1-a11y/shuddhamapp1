@@ -18,7 +18,6 @@ export default function Home() {
             <Story />
             <SeasonalBanner />
             <Dairy />
-            <WhyUs />
             <Contact />
         </>
     );

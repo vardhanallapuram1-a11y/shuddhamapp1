@@ -153,7 +153,7 @@ body {
   }
 
   #hero {
-    padding-top: 88px !important;
+    padding-top: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     padding-bottom: 12px !important;
@@ -194,19 +194,22 @@ body {
 /* Anita Gelato Specific Styles */
 .anita-arched-img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
+  background: #f5e6d3;
+  clip-path: inset(0);
 }
 
 .anita-arched-img img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
+  transform: scale(1.18);
 }
 
 .anita-card {

@@ -115,7 +115,7 @@ export default function FlavorsPage() {
                                     opacity: 0.8
                                 }}>{f.desc}</p>
 
-                                <button className="anita-btn" style={{ fontSize: "0.75rem", padding: "10px 24px" }}>See More</button>
+
                             </div>
                         </div>
                     ))}

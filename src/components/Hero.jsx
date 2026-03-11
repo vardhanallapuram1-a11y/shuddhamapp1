@@ -147,12 +147,6 @@ export default function Hero() {
             >
               Explore Flavors
             </Link>
-            <button onClick={() => paginate(-1)} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid #ddd", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-              <ChevronLeft size={17} color="#4e342e" />
-            </button>
-            <button onClick={() => paginate(1)} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid #ddd", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-              <ChevronRight size={17} color="#4e342e" />
-            </button>
           </div>
         </div>
       </section>
@@ -203,15 +197,7 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Desktop navigation arrows */}
-      <div style={{ position: "absolute", bottom: 80, right: 80, display: "flex", gap: 16, zIndex: 10 }}>
-        <button onClick={() => paginate(-1)} style={{ width: 50, height: 50, borderRadius: "50%", border: "1px solid #e0e0e0", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", boxShadow: "0 4px 12px rgba(0,0,0,0.06)" }}>
-          <ChevronLeft size={24} color="#4e342e" />
-        </button>
-        <button onClick={() => paginate(1)} style={{ width: 50, height: 50, borderRadius: "50%", border: "1px solid #e0e0e0", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", boxShadow: "0 4px 12px rgba(0,0,0,0.06)" }}>
-          <ChevronRight size={24} color="#4e342e" />
-        </button>
-      </div>
+
 
       {/* Desktop pagination dots */}
       <div style={{ position: "absolute", bottom: 40, left: 80, display: "flex", gap: 10, zIndex: 10 }}>

@@ -16,7 +16,7 @@ export default function Dairy() {
   const y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-    <section id="dairy" ref={containerRef} style={{ padding: "clamp(12px, 6vw, 100px) 24px", background: "var(--ice-lavender-light)", position: "relative" }}>
+    <section id="dairy" ref={containerRef} style={{ padding: "clamp(12px, 6vw, 100px) 24px", background: "var(--anita-beige)", position: "relative" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }}>
         <div style={{
           display: "grid",
@@ -37,7 +37,7 @@ export default function Dairy() {
                 color: "var(--ice-brown)",
                 lineHeight: 1.1
               }}>
-                Beyond<br /><span style={{ fontStyle: "italic", fontWeight: 400, color: "var(--ice-lavender)" }}>Ice Cream</span>
+                Beyond<br /><span style={{ fontStyle: "italic", fontWeight: 400, color: "var(--anita-pink)" }}>Ice Cream</span>
               </h2>
             </ScrollReveal>
             <ScrollReveal variant="fadeUp" delay={0.3}>
@@ -51,18 +51,6 @@ export default function Dairy() {
               }}>
                 From probiotic-rich dahi and refreshing lassi to aromatic ghee and festive shrikhand — Shuddham's full range is made from farm-fresh, pure milk.
               </p>
-            </ScrollReveal>
-            <ScrollReveal variant="fadeUp" delay={0.4}>
-              <Link to="/partnership" className="btn" style={{
-                background: "var(--ice-brown)",
-                color: "var(--white)",
-                padding: "14px 32px",
-                borderRadius: "99px",
-                fontSize: "0.85rem",
-                fontWeight: 700,
-                textDecoration: "none",
-                display: "inline-block"
-              }}>Become a Partner →</Link>
             </ScrollReveal>
           </div>
           <ScrollReveal variant="zoomIn" delay={0.2}>

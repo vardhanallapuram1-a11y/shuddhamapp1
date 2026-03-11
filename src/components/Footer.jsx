@@ -6,7 +6,7 @@ import { Instagram } from "lucide-react";
 export default function Footer() {
   const cols = [
     { title: "Products", links: [{ l: "Ice Creams", h: "/flavors" }, { l: "Dairy Products", h: "/dairy" }, { l: "Seasonal Specials", h: "/flavors" }] },
-    { title: "Company", links: [{ l: "Our Story", h: "/our-story" }, { l: "Why Shuddham", h: "/#why" }, { l: "Quality Promise", h: "/#why" }, { l: "Contact", h: "/partnership" }] },
+    { title: "Company", links: [{ l: "Our Story", h: "/our-story" }, { l: "Contact", h: "/partnership" }] },
   ];
 
   return (

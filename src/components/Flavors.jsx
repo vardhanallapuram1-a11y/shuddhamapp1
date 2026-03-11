@@ -66,7 +66,7 @@ export default function FlavorSystem() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           alignItems: "center",
-          gap: "clamp(12px, 8vw, 100px)"
+          gap: "clamp(24px, 8vw, 100px)"
         }}>
           <div style={{ textAlign: "left" }}>
 
@@ -127,9 +127,25 @@ export default function FlavorSystem() {
           <div style={{
             borderRadius: "0",
             overflow: "hidden",
-            boxShadow: "0 40px 80px rgba(34,61,51,0.12)"
+            boxShadow: "0 40px 80px rgba(34,61,51,0.12)",
+            width: "100%",
+            height: "100%",
+            aspectRatio: "1/1",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
           }}>
-            <img src={splitImg} alt="Artisanal Ice Cream Craft" style={{ width: "100%", height: "auto", display: "block" }} />
+            <img
+              src={splitImg}
+              alt="Artisanal Ice Cream Craft"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+                transform: "scale(1.15)"
+              }}
+            />
           </div>
         </div>
       </section>
@@ -161,8 +177,8 @@ export default function FlavorSystem() {
               background: "white",
               border: "1px solid var(--border)",
               borderRadius: "50%",
-              width: 50,
-              height: 50,
+              width: 36,
+              height: 36,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -170,7 +186,7 @@ export default function FlavorSystem() {
               boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
             }}
           >
-            <ChevronLeft size={24} color="var(--anita-green)" />
+            <ChevronLeft size={18} color="var(--anita-green)" />
           </button>
 
           <button
@@ -183,8 +199,8 @@ export default function FlavorSystem() {
               background: "white",
               border: "1px solid var(--border)",
               borderRadius: "50%",
-              width: 50,
-              height: 50,
+              width: 36,
+              height: 36,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -192,7 +208,7 @@ export default function FlavorSystem() {
               boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
             }}
           >
-            <ChevronRight size={24} color="var(--anita-green)" />
+            <ChevronRight size={18} color="var(--anita-green)" />
           </button>
 
           <div
@@ -222,7 +238,7 @@ export default function FlavorSystem() {
                 <div style={{ padding: "20px 14px 0", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
                   <h3 style={{ fontFamily: "var(--serif)", fontSize: "0.95rem", fontWeight: 700, color: "var(--anita-green)", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.04em" }}>{p.name}</h3>
                   <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.75rem", color: "var(--muted)", marginBottom: 12, height: "2.8em", overflow: "hidden", lineHeight: 1.4, opacity: 0.8 }}>{p.desc}</p>
-                  <button className="anita-btn" style={{ padding: "8px 20px", fontSize: "0.65rem" }}>See More</button>
+
                 </div>
               </div>
             ))}
@@ -256,8 +272,8 @@ export default function FlavorSystem() {
             />
           ))}
         </div>
-      </section>
+      </section >
       <DripDivider color="var(--anita-beige)" position="bottom" height={30} />
-    </div>
+    </div >
   );
 }
